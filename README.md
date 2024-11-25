@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Hi, Welcome to the Golden Wheat Bakery
 
-## Getting Started
+## Website Link here when set up.
 
-First, run the development server:
+This is a group project made by Rufaro, Mark, Gaberiel, Ethan and Carolina. We are a team of students working to create a fully functional website. We all attend SAIT (Southern Alberta Institute of Technology).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+In this project we will be showcasing our knowledge of React, NextJS, and Tailwind. We have a backend repository that can be found here :
+
+[Golden Wheat Bakery Backend](https://github.com/rufustech/CPNT-262-Golden-Wheat-Bakery-backend)
+
+In our backend Rufaro, and Gabriel were out back end specialists. They worked with MongoDB, and got our database schemas set up and linked.
+
+## Current Repo for Frontend
+
+[Golden Wheat Bakery Frontend](https://github.com/Felisong/cpnt262-the-golden-wheat-frontend)
+
+## instructions for the Team
+
+Hi everyone, please note you each have your own branches in all lowercase. Please work on your branches when working and in your own pages. Reach out to me if there are any complications.
+
+```
+git checkout gabriel
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+in example.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+You will find your own pages inside the app folder. Please feel free to add more if you find that we need another page. Please clone the repository.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+git clone https://github.com/Felisong/cpnt262-the-golden-wheat-frontend
+```
 
-## Learn More
+## Attributions
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [w3schools](https://www.w3schools.com)
+- [mdnMozilla](https://developer.mozilla.org/en-US/)
+  tba
