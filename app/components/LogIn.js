@@ -7,7 +7,7 @@ export default function LogIn() {
 
   return (
     <>
-      <form>
+      <form className="flex flex-col">
         <label>Username:</label>
         <input></input>
         <label>Password:</label>
