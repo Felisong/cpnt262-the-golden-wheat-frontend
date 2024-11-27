@@ -22,3 +22,8 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.rounded-t-3xl {
+  border-top-right-radius: 6rem;
+  border-top-left-radius: 6rem;
+}

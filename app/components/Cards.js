@@ -2,11 +2,15 @@
 
 export default function Cards() {
   return (
-    <div className="max-w-sm rounded-t-full overflow-hidden shadow-lg bg-blue-300">
-      <img className="w-full" src="/bread1.png" alt="Sunset in the mountains" />
+    <div className=" px-1 py-1 m-16 max-w-sm rounded-t-3xl overflow-hidden shadow-lg bg-yellow-800 ">
+      <img
+        className="w-full rounded-t-3xl"
+        src="/bread1.png"
+        alt="Sunset in the mountains"
+      />
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2">The Coldest Sunset</div>
-        <p className="text-yellow-700 text-base">
+        <p className="text-rose-500 text-base flex justify-center">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
           quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
           nihil.
