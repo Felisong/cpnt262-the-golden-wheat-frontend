@@ -1,4 +1,8 @@
-
-export default Logo() {
-  return (<h1> test</h1>);
+export default function Logo() {
+  return (
+    <>
+      <img></img>
+      <h2> THE GOLDEN WHEAT FACTORY</h2>
+    </>
+  );
 }
