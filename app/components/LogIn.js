@@ -29,11 +29,41 @@ export default function LogIn() {
 
   // functions for conditions
   function usernameCondition(currentName) {
-    if (currentName.length < 3 || currentName.length === 0) {
+    if (currentName.length <= 3 || currentName.length === 0) {
       setUsernameErr("Please make name longer than 3 characters.");
-      return false;
+      setIsNameValid(false);
     } else {
       setUsernameErr("");
+      setIsNameValid(true);
+    }
+  }
+  function emailConditions(currentEmail) {
+    if (currentEmail.match(/@/g) && currentEmail.length !== 0) {
+      setEmail(currentEmail);
+      setIsEmailValid(true);
+      setEmailErr("");
+    } else {
+      setIsEmailValid(false);
+      setEmailErr("Please input a valid email with @ in it.");
+    }
+  }
+
+  function passwordConditions(currentPw) {
+    if (currentPw.length <= 8 || currentPw.length === 0) {
+      setIsPasswordValid(false);
+      setPasswordErr("Please make password longer than 8 characters.");
+    } else {
+      setIsPasswordValid(true);
+      setPasswordErr("");
+    }
+  }
+  function passwordConfirmConditions(currentPwConfirm) {
+    if (currentPwConfirm === password) {
+      setIsPassConfirmValid(true);
+      setPasswordConfirmErr("");
+    } else {
+      setIsPassConfirmValid(false);
+      setPasswordConfirmErr("Please make password longer than 8 characters.");
     }
   }
 
@@ -55,10 +85,11 @@ export default function LogIn() {
             onChange={(e) => {
               const value = e.target.value;
               setUserName(value);
+              usernameCondition(value);
             }}
           />
           <p className="text-red-500 text-xs italic">
-            Please fill out this field.
+            {usernameErr && usernameErr}
           </p>
         </div>
         <div className="w-full md:w-1/2 px-3">
@@ -73,6 +104,10 @@ export default function LogIn() {
             id="grid-last-name"
             type="text"
             placeholder="emailhere@gmail.com"
+            onChange={(e) => {
+              const value = e.target.value;
+              setEmail(value);
+            }}
           />
         </div>
       </div>
@@ -89,6 +124,10 @@ export default function LogIn() {
             id="grid-password"
             type="password"
             placeholder="******************"
+            onChange={(e) => {
+              const value = e.target.value;
+              setPassword(value);
+            }}
           />
           <p className="text-gray-600 text-xs italic">
             Make it as long and as crazy as you'd like
