@@ -1,5 +1,12 @@
-import Cards from "../components/Cards";
+"use client";
+
+import { CardDefault } from "../components/Cards";
 
 export default function Products() {
-  return <Cards />;
+  return (
+    <div>
+      <h1>Welcome To Product Page</h1>
+      <CardDefault />
+    </div>
+  );
 }
