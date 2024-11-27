@@ -5,9 +5,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --cardbg: #f26259;
-  --darkblue: #080037;
-  --highlight: #ffd754;
+  --cardBg: #f26259;
+  --darkBlue: #080037;
+  --highLight: #ffd754;
 }
 
 @media (prefers-color-scheme: dark) {
