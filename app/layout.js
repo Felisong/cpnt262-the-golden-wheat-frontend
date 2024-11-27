@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${lexend.className} ${workSans.className} antialiased grid`}
+        className={`${lexend.className} ${workSans.className} antialiased grid var(--background)`}
       >
         <Navigation />
         {children}
