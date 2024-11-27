@@ -13,7 +13,8 @@ const workSans = Work_Sans({
 
 export const metadata = {
   title: "The Golden Wheat",
-  description: "Welcome to The Golden Wheat Factory! The best. ",
+  description:
+    "Welcome to The Golden Wheat Factory! The best baked goods in Calgary.",
 };
 
 export default function RootLayout({ children }) {

@@ -6,7 +6,10 @@ export default function Logo() {
         alt="logo for The Golden Wheat. It is a pink background with a yellow wheat in the center"
         className="w-20"
       ></img>
-      {/* <h2 className={`${lexend.className}`}> THE GOLDEN WHEAT FACTORY</h2> */}
+      <h2 className={`p-4 var(--highLight)`}>
+        {" "}
+        THE GOLDEN <br></br> WHEAT FACTORY
+      </h2>
     </div>
   );
 }

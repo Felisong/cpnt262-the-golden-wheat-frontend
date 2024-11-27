@@ -35,3 +35,5 @@ git clone https://github.com/Felisong/cpnt262-the-golden-wheat-frontend
 - [w3schools](https://www.w3schools.com)
 - [mdnMozilla](https://developer.mozilla.org/en-US/)
   tba
+
+- [code for hamburger](https://flowbite.com/docs/components/navbar/)
