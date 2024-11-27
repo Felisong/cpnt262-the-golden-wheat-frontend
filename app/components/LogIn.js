@@ -29,6 +29,7 @@ export default function LogIn() {
 
   // functions for conditions
   function usernameCondition(currentName) {
+    console.log(currentName);
     if (currentName.length <= 3 || currentName.length === 0) {
       setUsernameErr("Please make name longer than 3 characters.");
       setIsNameValid(false);
@@ -58,12 +59,12 @@ export default function LogIn() {
     }
   }
   function passwordConfirmConditions(currentPwConfirm) {
-    if (currentPwConfirm === password) {
+    if (currentPwConfirm !== password) {
+      setIsPassConfirmValid(false);
+      setPasswordConfirmErr("Confirm password does not match password.");
+    } else {
       setIsPassConfirmValid(true);
       setPasswordConfirmErr("");
-    } else {
-      setIsPassConfirmValid(false);
-      setPasswordConfirmErr("Please make password longer than 8 characters.");
     }
   }
 
@@ -78,7 +79,7 @@ export default function LogIn() {
             User Name
           </label>
           <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
             id="grid-first-name"
             type="text"
             placeholder="Jane"
@@ -107,9 +108,11 @@ export default function LogIn() {
             onChange={(e) => {
               const value = e.target.value;
               setEmail(value);
+              emailConditions(value);
             }}
           />
         </div>
+        <p className="text-red-500 text-xs italic">{emailErr && emailErr}</p>
       </div>
       <div className="flex flex-wrap -mx-3 mb-6">
         <div className="w-full px-3">
@@ -127,10 +130,11 @@ export default function LogIn() {
             onChange={(e) => {
               const value = e.target.value;
               setPassword(value);
+              passwordConditions(value);
             }}
           />
-          <p className="text-gray-600 text-xs italic">
-            Make it as long and as crazy as you'd like
+          <p className="text-red-500 text-xs italic">
+            {passwordErr && passwordErr}
           </p>
         </div>
       </div>
@@ -147,7 +151,16 @@ export default function LogIn() {
             id="grid-password"
             type="password"
             placeholder="******************"
+            onClick={(e) => {
+              const value = e.target.value;
+
+              setPasswordConfirm(value);
+              passwordConfirmConditions(value);
+            }}
           />
+          <p className="text-red-500 text-xs italic">
+            {passwordConfirmErr && passwordConfirmErr}
+          </p>
         </div>
       </div>
 
