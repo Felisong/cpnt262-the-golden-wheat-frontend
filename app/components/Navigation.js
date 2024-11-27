@@ -9,14 +9,17 @@ const lexend = Lexend_Exa({
 });
 
 export default function Navigation() {
-  const [isMobileNav, setIsMobileNav] = useState();
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
 
   return (
-    <nav className={`${lexend.className} flex w-full justify-between`}>
+    <nav
+      className={`${lexend.className} flex w-full justify-between items-center`}
+    >
       <Logo />
       <ul className="flex">
-        {}
-        <li> adjust later</li>
+        <li>
+          <img src="./sunmoon.png"></img>
+        </li>
         <li>
           <Hamburger />
         </li>
