@@ -2,11 +2,14 @@ import localFont from "next/font/local";
 import { Lexend_Exa } from "next/font/google";
 import "./globals.css";
 import { Work_Sans } from "next/font/google";
+import Navigation from "./components/Navigation";
 
 const lexend = Lexend_Exa({
   subsets: ["latin"],
 });
-const workSans = Work_Sans({});
+const workSans = Work_Sans({
+  subsets: ["latin"],
+});
 
 export const metadata = {
   title: "The Golden Wheat",
@@ -16,9 +19,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${lexend.className} ${workSans.className} antialiased`}>
+      <body
+        className={`${lexend.className} ${workSans.className} antialiased grid`}
+      >
+        <Navigation />
         {children}
-        <nav></nav>
       </body>
     </html>
   );
