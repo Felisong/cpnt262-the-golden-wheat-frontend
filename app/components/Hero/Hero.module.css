@@ -34,6 +34,7 @@
     padding: 20px;
     text-shadow: 3px 3px 5px black;
     z-index: 2;
+    text-transform: uppercase;
 }
 
 /* Responsive Styles */
