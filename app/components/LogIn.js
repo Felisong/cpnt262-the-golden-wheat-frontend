@@ -87,7 +87,7 @@ export default function LogIn() {
   }, conditions);
 
   return (
-    <form className={`w-full max-w-lg p-4 ${workSans.className} bg-yellow-100`}>
+    <form className={`w-full max-w-lg p-4`}>
       <div className="flex flex-wrap -mx-3 mb-6">
         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
           <label
