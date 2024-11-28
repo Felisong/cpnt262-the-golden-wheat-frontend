@@ -17,17 +17,9 @@ export default function Navigation() {
     { text: "Menu", url: "/products" },
   ];
 
-  const mobileNavLinks = [
-    { text: "Home", url: "/" },
-    { text: "About", url: "/about" },
-    { text: "Menu", url: "/products" },
-    { text: "Sign In", url: "/sign-in" },
-    { text: "Cart", url: "/cart" },
-  ];
-
   return (
     <nav
-      className={`${lexend.className} flex w-[100vw] justify-evenly items-center`}
+      className={`${lexend.className} flex w-[100vw] justify-between items-center bg-gradient-to-b from-black to-darkBlue`}
     >
       <Logo />
       <ul className="flex">
