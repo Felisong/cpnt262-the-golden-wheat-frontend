@@ -11,6 +11,18 @@ const lexend = Lexend_Exa({
 
 export default function Navigation() {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [isAccTrue, setIsAccTrue] = useState(false);
+
+  function SetIsUserLoggedIn() {
+    if (!isAccTrue) {
+      setIsAccTrue(localStorage.getItem("IsLoggedIn"));
+      if (typeof isAccTrue !== "String") {
+        setIsAccTrue(false);
+      } else {
+        setIsAccTrue(true);
+      }
+    }
+  }
 
   const navigation = [
     { name: "Home", href: "/", current: true, id: 1 },
@@ -37,24 +49,27 @@ export default function Navigation() {
         <li>
           <Hamburger />
         </li>
-        <div className=" space-x-4 w-fit  hidden md:flex">
-          {/* GET NAVIGATION WORKING PRIO */}
-          {navigation.map((item) => (
-            <Link
-              key={item.id}
-              href={item.href}
-              aria-current={item.current ? "page" : undefined}
-              className={classNames(
-                item.current
-                  ? "bg-darkBlue text-white px-2 text-xl w-30"
-                  : "text-yellowBright hover:bg-gray-700 hover:text-white",
-                "rounded-md py-2 px-1"
-              )}
-            >
-              {item.name}
-            </Link>
-          ))}
-        </div>
+        <li>
+          <div className=" space-x-4 w-fit  hidden md:flex">
+            {/* GET NAVIGATION WORKING PRIO */}
+            {navigation.map((item) => (
+              <Link
+                key={item.id}
+                href={item.href}
+                aria-current={item.current ? "page" : undefined}
+                className={classNames(
+                  item.current
+                    ? "bg-darkBlue text-white px-2 text-xl w-30"
+                    : "text-yellowBright hover:bg-gray-700 hover:text-white",
+                  "rounded-md py-2 px-1"
+                )}
+              >
+                {item.name}
+              </Link>
+            ))}
+          </div>
+        </li>
+        <li className="text-white">sign in Temp</li>
       </ul>
     </nav>
   );
