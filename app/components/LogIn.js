@@ -12,6 +12,8 @@ export default function LogIn() {
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [email, setEmail] = useState("");
   const [validateForm, setValidateForm] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState("false");
+  const [isCreateAcc, setIsCreateAcc] = useState(false);
 
   // are conditions true?
   const [isNameValid, setIsNameValid] = useState(false);
@@ -82,12 +84,15 @@ export default function LogIn() {
       setIsFormValid(false);
     }
   }
-  useEffect(() => {
-    isFormValidCheck();
-  }, conditions);
+  // function isUserLoggedIn()
+
+  // TODO: USERHASNOACC TO MAKE ELEMENTS APPEAR & DISAPEAR. OR. CREATE NEW PAGE/ FORM COMPONENT
+  // function userHasNoAcc() {
+  //   !isCreateAcc && setIsCreateAcc(true);
+  // }
 
   return (
-    <form className={`w-full max-w-lg p-4`}>
+    <form className={` max-w-fit p-4`}>
       <div className="flex flex-wrap -mx-3 mb-6">
         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
           <label
@@ -156,30 +161,33 @@ export default function LogIn() {
           </p>
         </div>
       </div>
-      <div className="flex flex-wrap -mx-3 mb-6">
-        <div className="w-full px-3">
-          <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            htmlFor="grid-password"
-          >
-            Confirm Password
-          </label>
-          <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-password-confirm"
-            type="password"
-            placeholder="******************"
-            onChange={(e) => {
-              const value = e.target.value;
-              setPasswordConfirm(value);
-              passwordConfirmConditions(value);
-            }}
-          />
-          <p className="text-red-500 text-xs italic">
-            {passwordConfirmErr && passwordConfirmErr}
-          </p>
+      {isCreateAcc && (
+        <div className={`flex flex-wrap -mx-3 mb-6`}>
+          <div className="w-full px-3">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              htmlFor="grid-password"
+            >
+              Confirm Password
+            </label>
+            <input
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-password-confirm"
+              type="password"
+              placeholder="******************"
+              onChange={(e) => {
+                const value = e.target.value;
+                setPasswordConfirm(value);
+                passwordConfirmConditions(value);
+              }}
+            />
+            {console.log(isCreateAcc)}
+            <p className="text-red-500 text-xs italic">
+              {passwordConfirmErr && passwordConfirmErr}
+            </p>
+          </div>
         </div>
-      </div>
+      )}
       <button
         className="p-4 rounded bg-transparent border-yellow-400"
         id="SubmitBtn"
@@ -187,6 +195,19 @@ export default function LogIn() {
       >
         Submit
       </button>
+      {!isCreateAcc ? (
+        <p className="text-center">
+          If you don't have an account,
+          <button className="text-blue-800 text-lg">Click Here!</button>
+        </p>
+      ) : (
+        <p className="text-center">
+          If you want to sign in,
+          <button className="text-blue-800 text-lg" onClick={userHasNoAcc()}>
+            Click Here!
+          </button>
+        </p>
+      )}
     </form>
   );
 }
