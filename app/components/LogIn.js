@@ -37,7 +37,6 @@ export default function LogIn() {
 
   // functions for conditions
   function usernameCondition(currentName) {
-    console.log(currentName);
     if (currentName.length <= 3 || currentName.length === 0) {
       setUsernameErr("Please make name longer than 3 characters.");
       setIsNameValid(false);
@@ -172,7 +171,6 @@ export default function LogIn() {
             placeholder="******************"
             onChange={(e) => {
               const value = e.target.value;
-              console.log(value);
               setPasswordConfirm(value);
               passwordConfirmConditions(value);
             }}
@@ -187,7 +185,6 @@ export default function LogIn() {
         id="SubmitBtn"
         disabled={!isFormValid}
       >
-        {console.log(isFormValid)}
         Submit
       </button>
     </form>
