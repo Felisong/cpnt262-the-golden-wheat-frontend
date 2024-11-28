@@ -2,7 +2,7 @@
 
 export default function Cards() {
   return (
-    <div className=" px-1 py-1 m-16 max-w-sm rounded-t-3xl overflow-hidden shadow-lg bg-yellow-800 ">
+    <div className=" px-1 py-1 m-4 w-11/12 md:w-80  md:flex-row rounded-t-3xl overflow-hidden shadow-lg bg-yellow-800 ">
       <img
         className="w-full rounded-t-3xl"
         src="/bread1.png"
@@ -17,15 +17,9 @@ export default function Cards() {
         </p>
       </div>
       <div className="px-6 pt-4 pb-2">
-        <span className="inline-block bg-rose-300 rounded-full px-3 py-1 text-sm font-semibold text-blue-700 mr-2 mb-2">
-          #photography
-        </span>
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        <button className="text bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
           Button
         </button>
-        <span className="inline-block bg-rose-300 rounded-full px-3 py-1 text-sm font-semibold text-blue-700 mr-2 mb-2">
-          #winter
-        </span>
       </div>
     </div>
   );
