@@ -29,6 +29,12 @@ export default function LogIn() {
   const [passwordConfirmErr, setPasswordConfirmErr] = useState("");
   const [emailErr, setEmailErr] = useState("");
 
+  // data from database
+  const url = "http://localhost:5000/api/user";
+  const authUrl = "http://localhost:5000/api/auth/login";
+  const [dataBaseUsers, setDataBaseUsers] = useState(null);
+  const [dataBaseAuth, setDataBaseAuth] = useState(null);
+
   // condition check
   const conditions = [
     isNameValid,
@@ -80,7 +86,7 @@ export default function LogIn() {
   function isFormValidCheck() {
     if (isCreateAcc) {
       if (
-        isNameValid &&
+        // isNameValid &&
         isEmailValid &&
         isPasswordValid &&
         isPassConfirmValid
@@ -90,13 +96,14 @@ export default function LogIn() {
         setIsFormValid(false);
       }
     } else {
-      if (isNameValid && isEmailValid && isPasswordValid) {
+      if (isEmailValid && isPasswordValid) {
         setIsFormValid(true);
       } else {
         setIsFormValid(false);
       }
     }
   }
+
   useEffect(() => {
     isFormValidCheck();
   }, conditions);
@@ -104,17 +111,65 @@ export default function LogIn() {
   function userHasNoAcc() {
     if (!isCreateAcc) {
       setIsCreateAcc(true);
-      console.log(`if acc is false: ${isCreateAcc}`);
     } else {
       setIsCreateAcc(false);
-      console.log(`if acc is true: ${isCreateAcc}`);
     }
+  }
+
+  const [formDataToShow, setFormDataToShow] = useState(null);
+  async function handleSignIn() {
+    try {
+      const res = await fetch(authUrl, {
+        method: "POST",
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(`response :`, res);
+      const data = await res.json();
+
+      console.log(`data :`, data);
+      setFormDataToShow(data.message);
+    } catch (error) {
+      console.log(`error fetching data.`, error);
+    }
+  }
+
+  // async function fetchUserNameData() {
+  //   try {
+  //     const res = await fetch(url);
+  //     const users = await res.json();
+  //     setDataBaseUsers(users);
+  //   } catch (error) {
+  //     console.log(`error fetching data.`, error);
+  //   }
+  // }
+  async function fetchSignIn() {
+    try {
+      const res = await fetch(authUrl);
+      const data = await res.json();
+      setDataBaseAuth(data);
+    } catch (error) {
+      console.log(`error fetching data.`, error);
+    }
+  }
+  useEffect(() => {
+    fetchSignIn();
+  }, []);
+
+  async function gatherAndPushData() {
+    fetchUserNameData();
   }
 
   return (
     <form className={` max-w-fit p-4`}>
+      {/* {console.log(dataBaseUsers, dataBaseAuth)} */}
       <div className="flex flex-wrap -mx-3 mb-6">
-        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        {/* <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
           <label
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             htmlFor="grid-first-name"
@@ -135,7 +190,7 @@ export default function LogIn() {
           <p className="text-red-500 text-xs italic">
             {usernameErr && usernameErr}
           </p>
-        </div>
+        </div> */}
         <div className="w-full md:w-1/2 px-3">
           <label
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -181,7 +236,6 @@ export default function LogIn() {
           </p>
         </div>
       </div>
-      {console.log(`is create acc TRUE???: ${isCreateAcc}`)}
       {isCreateAcc && (
         <div className={`flex flex-wrap -mx-3 mb-6`}>
           <div className="w-full px-3">
@@ -212,7 +266,12 @@ export default function LogIn() {
       <button
         className="p-4 rounded bg-transparent border-yellow-400"
         id="SubmitBtn"
-        disabled={!isFormValid}
+        // disabled={!isFormValid}
+        disabled={false}
+        onClick={(e) => {
+          e.preventDefault();
+          handleSignIn();
+        }}
       >
         Submit
       </button>
