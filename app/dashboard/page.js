@@ -5,7 +5,7 @@ export default function DashBoard() {
         <div
           className={` bg-yellowBright bg-no-repeat bg-contain bg-center rounded-lg flex-col m-4`}
         >
-          <LogIn />
+          Meow meow
         </div>
       </div>
     </>

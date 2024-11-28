@@ -1,13 +1,14 @@
 import { Work_Sans } from "next/font/google";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const workSans = Work_Sans({
   subsets: ["latin"],
 });
 
 export default function LogIn() {
+  const router = useRouter();
   // variables
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -87,7 +88,7 @@ export default function LogIn() {
   function isFormValidCheck() {
     if (isCreateAcc) {
       if (
-        // isNameValid &&
+        isNameValid &&
         isEmailValid &&
         isPasswordValid &&
         isPassConfirmValid
@@ -138,11 +139,10 @@ export default function LogIn() {
       setFormDataToShow(data.message);
 
       // condition to add to browser storage
-      if (data) {
-        Cookies.set("user Token: ", data.token, { expires: 7 });
+      if (data.token) {
+        Cookies.set("userToken: ", data.token, { expires: 7 });
         localStorage.setItem("isLoggedIn", true);
-        //TODO: GET ROUTER WORKING FOR IF DATA IS TRUE.
-        // router.push("/app/dashboard");
+        router.push("/dashboard");
       } else {
         localStorage.setItem("isLoggedIn", false);
       }
@@ -175,8 +175,6 @@ export default function LogIn() {
       if (data) {
         Cookies.set("user Token: ", data.token, { expires: 7 });
         localStorage.setItem("isLoggedIn", true);
-        //TODO: GET ROUTER WORKING FOR IF DATA IS TRUE.
-        // router.push("/app/dashboard");
       } else {
         localStorage.setItem("isLoggedIn", false);
       }
@@ -322,7 +320,6 @@ export default function LogIn() {
           >
             Create Here!
           </button>
-          {formDataToShow}
         </p>
       ) : (
         <p
@@ -336,6 +333,7 @@ export default function LogIn() {
           <button className="text-blue-800 text-lg"> Click Here!</button>
         </p>
       )}
+      <p className="text-blue-800 text-center">{formDataToShow}</p>
     </form>
   );
 }
