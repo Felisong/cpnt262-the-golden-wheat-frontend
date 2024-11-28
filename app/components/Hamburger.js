@@ -18,21 +18,21 @@ export default function Hamburger() {
   ];
 
   return (
-    <div className="m-0 p-0">
+    <div className="m-0 p-0 relative">
       <button
         data-popover-target="menu"
-        className="rounded-md border text-center text-sm text-white transition-all hover:shadow-lg focus:bg-blue-900 focus:shadow-none active:bg-blue-900  hover:bg-blue-900  active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2 md:hidden lg:hidden w-[50px] p-2 mr-6"
+        className="rounded-md text-center text-sm transition-all hover:shadow-lg focus:bg-blue-950 focus:shadow-none active:bg-blue-950  hover:bg-blue-950  active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2 md:hidden lg:hidden w-[40px] p-2 mr-6"
         type="button"
         onClick={makeMenuVisible}
       >
-        <img src="/burger.svg" className="relative"></img>
+        <img src="/burger.svg"></img>
       </button>
       {isMenuVisible && (
         <ul
           role="menu"
           data-popover="menu"
           data-popover-placement="bottom"
-          className="absolute z-10 overflow-auto rounded-lg border border-slate-200 bg-white p-1.5 left-auto shadow-lg shadow-sm focus:outline-none"
+          className="absolute z-10 overflow-x-auto rounded-lg border border-slate-200 bg-white left-auto shadow-lg shadow-sm focus:outline-none max-w-[95vw] right-8"
         >
           <li
             role="menuitem"
