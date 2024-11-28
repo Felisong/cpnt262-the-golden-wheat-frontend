@@ -97,6 +97,9 @@ export default function LogIn() {
       }
     }
   }
+  useEffect(() => {
+    isFormValidCheck();
+  }, conditions);
 
   function userHasNoAcc() {
     if (!isCreateAcc) {
