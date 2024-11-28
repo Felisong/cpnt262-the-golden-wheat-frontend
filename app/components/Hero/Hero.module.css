@@ -37,36 +37,34 @@
     text-transform: uppercase;
 }
 
-/* Responsive Styles */
 
-/* For tablets (screen width 768px to 1024px) */
 @media (max-width: 1024px) {
     .h1 {
-        font-size: 48px; /* Smaller font size for tablets */
+        font-size: 48px;
         padding: 15px;
     }
 }
 
-/* For mobile screens (screen width 480px to 768px) */
+
 @media (max-width: 768px) {
     .hero {
-        height: 80vh; /* Reduce height on mobile for better visibility */
+        height: 80vh;
     }
     
     .h1 {
-        font-size: 32px; /* Smaller font size for mobile */
+        font-size: 32px;
         padding: 10px;
     }
 }
 
-/* For small mobile screens (screen width 320px to 480px) */
+
 @media (max-width: 480px) {
     .hero {
-        height: 70vh; /* Further reduce height for very small screens */
+        height: 70vh;
     }
     
     .h1 {
-        font-size: 24px; /* Smaller font size for very small screens */
+        font-size: 24px;
         padding: 10px;
     }
 }
