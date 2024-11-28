@@ -11,14 +11,32 @@ const lexend = Lexend_Exa({
 export default function Navigation() {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
 
+  const navLinks = [
+    { text: "Home", url: "/" },
+    { text: "About", url: "/about" },
+    { text: "Menu", url: "/products" },
+  ];
+
+  const mobileNavLinks = [
+    { text: "Home", url: "/" },
+    { text: "About", url: "/about" },
+    { text: "Menu", url: "/products" },
+    { text: "Sign In", url: "/sign-in" },
+    { text: "Cart", url: "/cart" },
+  ];
+
   return (
     <nav
-      className={`${lexend.className} flex w-full justify-between items-center`}
+      className={`${lexend.className} flex w-[100vw] justify-evenly items-center`}
     >
       <Logo />
       <ul className="flex">
         <li>
-          <img src="./sunmoon.png"></img>
+          <img
+            src="./sunmoon.png"
+            alt="dark mode or light mode trigger."
+            className="w-8"
+          ></img>
         </li>
         <li>
           <Hamburger />
