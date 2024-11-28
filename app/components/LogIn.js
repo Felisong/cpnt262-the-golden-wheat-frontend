@@ -1,5 +1,6 @@
 import { Work_Sans } from "next/font/google";
 import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
 
 const workSans = Work_Sans({
   subsets: ["latin"],
@@ -34,6 +35,7 @@ export default function LogIn() {
   const authUrl = "http://localhost:5000/api/auth/login";
   const [dataBaseUsers, setDataBaseUsers] = useState(null);
   const [dataBaseAuth, setDataBaseAuth] = useState(null);
+  const [formDataToShow, setFormDataToShow] = useState(null);
 
   // condition check
   const conditions = [
@@ -108,6 +110,14 @@ export default function LogIn() {
     isFormValidCheck();
   }, conditions);
 
+  // local storage and cookie storage
+  // function setCookie(key, value) {
+  //   Cookies.set(key, value, { expires: 7 });
+  // }
+  // function localStorageIsLoggedIn(value) {
+  //   localStorage.setItem("isLoggedIn", value);
+  // }
+
   function userHasNoAcc() {
     if (!isCreateAcc) {
       setIsCreateAcc(true);
@@ -116,7 +126,6 @@ export default function LogIn() {
     }
   }
 
-  const [formDataToShow, setFormDataToShow] = useState(null);
   async function handleSignIn() {
     try {
       const res = await fetch(authUrl, {
@@ -133,7 +142,17 @@ export default function LogIn() {
       const data = await res.json();
 
       console.log(`data :`, data);
+      console.log(`data token :`, data.token);
+      console.log(`data msg? :`, data.message);
       setFormDataToShow(data.message);
+
+      // condition to add to browser storage
+      if (data) {
+        Cookies.set("user Token: ", data.token, { expires: 7 });
+        localStorage.setItem("isLoggedIn", true);
+      } else {
+        localStorage.setItem("isLoggedIn", false);
+      }
     } catch (error) {
       console.log(`error fetching data.`, error);
     }
