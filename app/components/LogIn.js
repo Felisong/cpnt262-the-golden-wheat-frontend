@@ -13,8 +13,6 @@ export default function LogIn() {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [email, setEmail] = useState("");
-  const [validateForm, setValidateForm] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState("false");
   const [isCreateAcc, setIsCreateAcc] = useState(false);
 
   // are conditions true?
@@ -110,14 +108,6 @@ export default function LogIn() {
   useEffect(() => {
     isFormValidCheck();
   }, conditions);
-
-  // local storage and cookie storage
-  // function setCookie(key, value) {
-  //   Cookies.set(key, value, { expires: 7 });
-  // }
-  // function localStorageIsLoggedIn(value) {
-  //   localStorage.setItem("isLoggedIn", value);
-  // }
 
   function userHasNoAcc() {
     if (!isCreateAcc) {
