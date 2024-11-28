@@ -1,5 +1,5 @@
 import { Work_Sans } from "next/font/google";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const workSans = Work_Sans({
   subsets: ["latin"],
@@ -19,13 +19,21 @@ export default function LogIn() {
   const [isPassConfirmValid, setIsPassConfirmValid] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(false);
 
-  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const [isFormValid, setIsFormValid] = useState(true);
 
   // errors
   const [usernameErr, setUsernameErr] = useState("");
   const [passwordErr, setPasswordErr] = useState("");
   const [passwordConfirmErr, setPasswordConfirmErr] = useState("");
   const [emailErr, setEmailErr] = useState("");
+
+  // condition check
+  const conditions = [
+    isNameValid,
+    isEmailValid,
+    isPasswordValid,
+    isPassConfirmValid,
+  ];
 
   // functions for conditions
   function usernameCondition(currentName) {
@@ -67,6 +75,17 @@ export default function LogIn() {
       setPasswordConfirmErr("");
     }
   }
+
+  function isFormValidCheck() {
+    if (isNameValid && isEmailValid && isPasswordValid && isPassConfirmValid) {
+      setIsFormValid(true);
+    } else {
+      setIsFormValid(false);
+    }
+  }
+  useEffect(() => {
+    isFormValidCheck();
+  }, conditions);
 
   return (
     <form className={`w-full max-w-lg p-4 ${workSans.className} bg-yellow-100`}>
@@ -159,16 +178,16 @@ export default function LogIn() {
             }}
           />
           <p className="text-red-500 text-xs italic">
-            {console.log(
-              `PW VAR: ${password}, CONFIRM VAR: ${passwordConfirm} error: ${passwordConfirmErr}
-              isvalid? ${isPassConfirmValid}`
-            )}
             {passwordConfirmErr && passwordConfirmErr}
           </p>
         </div>
       </div>
-
-      <button className="p-4 rounded bg-transparent border-yellow-400 ">
+      <button
+        className="p-4 rounded bg-transparent border-yellow-400"
+        id="SubmitBtn"
+        disabled={!isFormValid}
+      >
+        {console.log(isFormValid)}
         Submit
       </button>
     </form>
