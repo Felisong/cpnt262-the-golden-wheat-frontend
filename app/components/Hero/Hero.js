@@ -1,11 +1,11 @@
 import styles from './Hero.module.css'
 
-function Hero(){
+function Hero(props){
 
     return(
         <div className={styles.hero}>
             <h1 className={styles.h1}>
-            BAKED TO PERFECTION.
+            {props.title}
             </h1>
         </div>
     );

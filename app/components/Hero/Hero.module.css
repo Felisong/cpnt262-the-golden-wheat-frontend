@@ -24,48 +24,47 @@
 }
 
 .h1 {
-  font-family: "Lexend Exa", sans-serif;
-  font-size: 64px;
-  font-weight: bold;
-  color: white;
-  text-align: center;
-  line-height: 1.2;
-  margin: 0;
-  padding: 20px;
-  text-shadow: 3px 3px 5px black;
-  z-index: 2;
+    font-family: 'Lexend Exa', sans-serif;
+    font-size: 64px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    line-height: 1.2;
+    margin: 0;
+    padding: 20px;
+    text-shadow: 3px 3px 5px black;
+    z-index: 2;
+    text-transform: uppercase;
 }
 
-/* Responsive Styles */
 
-/* For tablets (screen width 768px to 1024px) */
 @media (max-width: 1024px) {
-  .h1 {
-    font-size: 48px; /* Smaller font size for tablets */
-    padding: 15px;
-  }
+    .h1 {
+        font-size: 48px;
+        padding: 15px;
+    }
 }
 
-/* For mobile screens (screen width 480px to 768px) */
+
 @media (max-width: 768px) {
-  .hero {
-    height: 80vh; /* Reduce height on mobile for better visibility */
-  }
-
-  .h1 {
-    font-size: 32px; /* Smaller font size for mobile */
-    padding: 10px;
-  }
+    .hero {
+        height: 80vh;
+    }
+    
+    .h1 {
+        font-size: 32px;
+        padding: 10px;
+    }
 }
 
-/* For small mobile screens (screen width 320px to 480px) */
-@media (max-width: 480px) {
-  .hero {
-    height: 70vh; /* Further reduce height for very small screens */
-  }
 
-  .h1 {
-    font-size: 24px; /* Smaller font size for very small screens */
-    padding: 10px;
-  }
+@media (max-width: 480px) {
+    .hero {
+        height: 70vh;
+    }
+    
+    .h1 {
+        font-size: 24px;
+        padding: 10px;
+    }
 }
