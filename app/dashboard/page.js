@@ -1,8 +1,4 @@
-"use client";
-import { useState } from "react";
-import LogIn from "../components/LogIn";
-
-export default function SignIn() {
+export default function DashBoard() {
   return (
     <>
       <div className="flex m-auto">

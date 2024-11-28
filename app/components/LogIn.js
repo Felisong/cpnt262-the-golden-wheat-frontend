@@ -1,7 +1,7 @@
 import { Work_Sans } from "next/font/google";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import { Router } from "next/router";
+import { Router, useRouter } from "next/router";
 
 const workSans = Work_Sans({
   subsets: ["latin"],
@@ -151,6 +151,8 @@ export default function LogIn() {
       if (data) {
         Cookies.set("user Token: ", data.token, { expires: 7 });
         localStorage.setItem("isLoggedIn", true);
+        //TODO: GET ROUTER WORKING FOR IF DATA IS TRUE.
+        // router.push("/app/dashboard");
       } else {
         localStorage.setItem("isLoggedIn", false);
       }
@@ -159,15 +161,40 @@ export default function LogIn() {
     }
   }
 
-  // async function fetchUserNameData() {
-  //   try {
-  //     const res = await fetch(url);
-  //     const users = await res.json();
-  //     setDataBaseUsers(users);
-  //   } catch (error) {
-  //     console.log(`error fetching data.`, error);
-  //   }
-  // }
+  async function handleAccCreate() {
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(`response :`, res);
+      const data = await res.json();
+
+      console.log(`data :`, data);
+      console.log(`data token :`, data.token);
+      console.log(`data msg? :`, data.message);
+      setFormDataToShow(data.message);
+
+      // condition to add to browser storage
+      if (data) {
+        Cookies.set("user Token: ", data.token, { expires: 7 });
+        localStorage.setItem("isLoggedIn", true);
+        //TODO: GET ROUTER WORKING FOR IF DATA IS TRUE.
+        // router.push("/app/dashboard");
+      } else {
+        localStorage.setItem("isLoggedIn", false);
+      }
+    } catch (error) {
+      console.log(`error fetching data.`, error);
+    }
+  }
+
   async function fetchSignIn() {
     try {
       const res = await fetch(authUrl);
@@ -180,10 +207,6 @@ export default function LogIn() {
   useEffect(() => {
     fetchSignIn();
   }, []);
-
-  async function gatherAndPushData() {
-    fetchUserNameData();
-  }
 
   return (
     <form className={` max-w-fit p-4`}>
