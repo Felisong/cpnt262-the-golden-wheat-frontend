@@ -27,3 +27,8 @@ body {
   border-top-right-radius: 6rem;
   border-top-left-radius: 6rem;
 }
+
+.flex {
+  display: flex;
+  flex-direction: ("flex-col", "md:flex-row");
+}

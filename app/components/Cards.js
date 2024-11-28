@@ -2,7 +2,7 @@
 
 export default function Cards() {
   return (
-    <div className=" px-1 py-1 m-4 w-11/12 md:w-80  md:flex-row rounded-t-3xl overflow-hidden shadow-lg bg-yellow-800 ">
+    <div className="w-11/12 md:w-80 px-1 py-1 m-4    rounded-t-3xl overflow-hidden shadow-lg bg-brownBg">
       <img
         className="w-full rounded-t-3xl"
         src="/bread1.png"
