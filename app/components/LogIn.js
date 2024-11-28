@@ -148,17 +148,21 @@ export default function LogIn() {
           </label>
           <input
             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-password"
+            id="grid-password-confirm"
             type="password"
             placeholder="******************"
-            onClick={(e) => {
+            onChange={(e) => {
               const value = e.target.value;
-
+              console.log(value);
               setPasswordConfirm(value);
               passwordConfirmConditions(value);
             }}
           />
           <p className="text-red-500 text-xs italic">
+            {console.log(
+              `PW VAR: ${password}, CONFIRM VAR: ${passwordConfirm} error: ${passwordConfirmErr}
+              isvalid? ${isPassConfirmValid}`
+            )}
             {passwordConfirmErr && passwordConfirmErr}
           </p>
         </div>
