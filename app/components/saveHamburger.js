@@ -9,17 +9,13 @@ export default function Hamburger() {
     !isMenuVisible ? setIsMenuVisible(true) : setIsMenuVisible(false);
   }
 
-  const navigation = [
-    { text: "Home", href: "/", current: true, id: 1 },
-    { text: "About", href: "/about", current: false, id: 2 },
-    { text: "Menu", href: "/products", current: false, id: 3 },
-    { text: "Sign In", href: "/sign-in", current: false, id: 4 },
-    { text: "Cart", href: "/cart", current: false, id: 5 },
+  const mobileNavLinks = [
+    { text: "Home", url: "/" },
+    { text: "About", url: "/about" },
+    { text: "Menu", url: "/products" },
+    { text: "Sign In", url: "/sign-in" },
+    { text: "Cart", url: "/cart" },
   ];
-
-  function classNames(...classes) {
-    return classes.filter(Boolean).join(" ");
-  }
 
   return (
     <div className="m-0 p-0 relative">
@@ -38,23 +34,24 @@ export default function Hamburger() {
           data-popover-placement="bottom"
           className="absolute z-10 overflow-x-auto rounded-lg border border-slate-200 bg-white left-auto shadow-lg shadow-sm focus:outline-none max-w-[95vw] right-8"
         >
-          <div className="flex flex-col space-x-4 w-40 ">
-            {navigation.map((item) => (
-              <Link
-                key={item.id}
-                href={item.href}
-                aria-current={item.current ? "page" : undefined}
-                className={classNames(
-                  item.current
-                    ? "bg-darkBlue text-white px-2 text-2xl"
-                    : "text-darkBlue hover:bg-gray-700 hover:text-white",
-                  "rounded-md py-2 text-sm font-medium text-2xl"
-                )}
-              >
-                {item.text}
-              </Link>
-            ))}
-          </div>
+          <li
+            role="menuitem"
+            className="cursor-pointer text-slate-800 flex w-full text-sm items-start rounded-md p-3 transition-all hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100"
+          >
+            <Link href={"/"}>{`Home`}</Link>
+          </li>
+          <li
+            role="menuitem"
+            className="cursor-pointer text-slate-800 flex w-full text-sm items-center rounded-md p-3 transition-all hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100"
+          >
+            <Link href={"/about"}>{`About`}</Link>
+          </li>
+          <li
+            role="menuitem"
+            className="cursor-pointer text-slate-800 flex w-full text-sm items-center rounded-md p-3 transition-all hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100"
+          >
+            {`Menu Item 3`}
+          </li>
         </ul>
       )}
     </div>
