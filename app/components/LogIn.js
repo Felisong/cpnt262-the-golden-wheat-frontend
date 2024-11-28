@@ -21,7 +21,7 @@ export default function LogIn() {
   const [isPassConfirmValid, setIsPassConfirmValid] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(false);
 
-  const [isFormValid, setIsFormValid] = useState(true);
+  const [isFormValid, setIsFormValid] = useState(false);
 
   // errors
   const [usernameErr, setUsernameErr] = useState("");
@@ -78,18 +78,35 @@ export default function LogIn() {
   }
 
   function isFormValidCheck() {
-    if (isNameValid && isEmailValid && isPasswordValid && isPassConfirmValid) {
-      setIsFormValid(true);
+    if (isCreateAcc) {
+      if (
+        isNameValid &&
+        isEmailValid &&
+        isPasswordValid &&
+        isPassConfirmValid
+      ) {
+        setIsFormValid(true);
+      } else {
+        setIsFormValid(false);
+      }
     } else {
-      setIsFormValid(false);
+      if (isNameValid && isEmailValid && isPasswordValid) {
+        setIsFormValid(true);
+      } else {
+        setIsFormValid(false);
+      }
     }
   }
-  // function isUserLoggedIn()
 
-  // TODO: USERHASNOACC TO MAKE ELEMENTS APPEAR & DISAPEAR. OR. CREATE NEW PAGE/ FORM COMPONENT
-  // function userHasNoAcc() {
-  //   !isCreateAcc && setIsCreateAcc(true);
-  // }
+  function userHasNoAcc() {
+    if (!isCreateAcc) {
+      setIsCreateAcc(true);
+      console.log(`if acc is false: ${isCreateAcc}`);
+    } else {
+      setIsCreateAcc(false);
+      console.log(`if acc is true: ${isCreateAcc}`);
+    }
+  }
 
   return (
     <form className={` max-w-fit p-4`}>
@@ -161,6 +178,7 @@ export default function LogIn() {
           </p>
         </div>
       </div>
+      {console.log(`is create acc TRUE???: ${isCreateAcc}`)}
       {isCreateAcc && (
         <div className={`flex flex-wrap -mx-3 mb-6`}>
           <div className="w-full px-3">
@@ -181,7 +199,7 @@ export default function LogIn() {
                 passwordConfirmConditions(value);
               }}
             />
-            {console.log(isCreateAcc)}
+
             <p className="text-red-500 text-xs italic">
               {passwordConfirmErr && passwordConfirmErr}
             </p>
@@ -198,14 +216,26 @@ export default function LogIn() {
       {!isCreateAcc ? (
         <p className="text-center">
           If you don't have an account,
-          <button className="text-blue-800 text-lg">Click Here!</button>
+          <button
+            className="text-blue-800 text-lg"
+            onClick={(e) => {
+              e.preventDefault();
+              userHasNoAcc();
+            }}
+          >
+            Create Here!
+          </button>
         </p>
       ) : (
-        <p className="text-center">
+        <p
+          className="text-center"
+          onClick={(e) => {
+            e.preventDefault();
+            userHasNoAcc();
+          }}
+        >
           If you want to sign in,
-          <button className="text-blue-800 text-lg" onClick={userHasNoAcc()}>
-            Click Here!
-          </button>
+          <button className="text-blue-800 text-lg"> Click Here!</button>
         </p>
       )}
     </form>
