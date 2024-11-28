@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Logo() {
   return (
-    <Link className="flex items-center p-2 cursor-pointer my-4 " href={"/"}>
+    <Link className="flex items-center p-2 cursor-pointer my-8" href={"/"}>
       <img
         src="./logo.png"
         alt="logo for The Golden Wheat. It is a pink background with a yellow wheat in the center. Click on here to navigate Home."
