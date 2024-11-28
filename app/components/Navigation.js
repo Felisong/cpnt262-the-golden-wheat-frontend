@@ -19,15 +19,15 @@ export default function Navigation() {
 
   return (
     <nav
-      className={`${lexend.className} flex w-[100vw] justify-between items-center bg-gradient-to-b from-black to-darkBlue border-yellowBright border-b-4 h-32`}
+      className={`${lexend.className} flex w-[100vw] justify-between items-center bg-gradient-to-b from-black to-darkBlue border-yellowBright border-b-4 h-fit`}
     >
       <Logo />
-      <ul className="flex items-center">
+      <ul className="flex items-center my-8 md:mr-6 lg:mr-8">
         <li>
           <img
             src="./sunmoon.png"
             alt="dark mode or light mode trigger."
-            className="w-6"
+            className="w-6 md:w-12 lg:w-16"
           ></img>
         </li>
         <li>
