@@ -9,7 +9,7 @@ export default function Logo() {
         className="w-12 md:w-24 lg:w-28 "
       ></img>
       <h2
-        className={`text-yellow-400 text-[10px] w-4 md:text-xl md:w-fit md:justify-between lg:text-2xl lg:w-fit pl-2`}
+        className={`text-yellow-400 text-[10px] hidden md:block lg:block md:text-xl  md:justify-between lg:text-2xl pl-2`}
       >
         THE GOLDEN <br></br> WHEAT FACTORY
       </h2>
