@@ -8,6 +8,9 @@ const workSans = Work_Sans({
 });
 
 export default function LogIn() {
+  // for routing
+  const router = useRouter();
+
   // variables
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -135,10 +138,14 @@ export default function LogIn() {
       const data = await res.json();
 
       console.log(`data :`, data);
-      Cookies.set("userToken", data.token);
-      localStorage.setItem("isLoggedIn", true);
-
-      setFormDataToShow(data.message);
+      if (data) {
+        Cookies.set("userToken", data.token);
+        localStorage.setItem("isLoggedIn", true);
+        setFormDataToShow(data.message);
+        router.push("/dashboard");
+      } else {
+        setFormDataToShow(data.message);
+      }
     } catch (error) {
       console.log(`error fetching data.`, error);
     }
@@ -159,41 +166,26 @@ export default function LogIn() {
           "Content-Type": "application/json",
         },
       });
-      console.log(`response :`, res);
       const data = await res.json();
-      console.log(`data :`, data);
-    } catch (error) {
-      console.log(`error fetching data.`, error);
-    }
-  }
 
-  // async function fetchUserNameData() {
-  //   try {
-  //     const res = await fetch(url);
-  //     const users = await res.json();
-  //     setDataBaseUsers(users);
-  //   } catch (error) {
-  //     console.log(`error fetching data.`, error);
-  //   }
-  // }
-  async function fetchSignIn() {
-    try {
-      const res = await fetch(authUrl);
-      const data = await res.json();
-      setDataBaseAuth(data);
+      if (data) {
+        Cookies.set("userToken", username);
+        localStorage.setItem("isLoggedIn", true);
+        setFormDataToShow(data.message);
+        router.push("/dashboard");
+      } else {
+        setFormDataToShow(data.message);
+      }
     } catch (error) {
       console.log(`error fetching data.`, error);
     }
   }
-  useEffect(() => {
-    fetchSignIn();
-  }, []);
 
   return (
     <form className={` w-full p-4`}>
       <div className="flex flex-wrap mb-6">
         {isCreateAcc && (
-          <div className="w-full px-3 mb-6 md:mb-0">
+          <div className="w-full px-3">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               htmlFor="grid-first-name"
@@ -294,8 +286,7 @@ export default function LogIn() {
       <button
         className="p-4 rounded bg-transparent border-yellow-400"
         id="SubmitBtn"
-        // disabled={!isFormValid}
-        disabled={false}
+        disabled={!isFormValid}
         onClick={(e) => {
           e.preventDefault();
           isCreateAcc ? handleCreateAcc() : handleSignIn();
