@@ -72,7 +72,7 @@ export default function about() {
             We’re so grateful to all of you who have supported us along the way. Thank you for being a part of The Golden Wheat Bakery’s journey, and we look forward to sharing many more delicious moments with you!
             </p>
         </div>
-        <div className={styles.imgcontainerR}>
+        <div className={styles.imgcontainer}>
             <img className={styles.imageR} src="freshly-baked-bread-sweet-buns-table-generated-by-ai.jpg" alt="Sweet buns" />
         </div>
       </div>

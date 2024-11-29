@@ -297,7 +297,8 @@ export default function LogIn() {
 
       {!isCreateAcc ? (
         <p className="text-center">
-          If you don't have an account,
+          If you do not have an account,
+          <br></br>
           <button
             className="text-blue-800 text-lg"
             onClick={(e) => {
@@ -318,6 +319,7 @@ export default function LogIn() {
           }}
         >
           If you want to sign in,
+          <br></br>
           <button className="text-blue-800 text-lg"> Click Here!</button>
         </p>
       )}
