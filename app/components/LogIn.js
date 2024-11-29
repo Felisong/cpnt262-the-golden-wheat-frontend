@@ -8,12 +8,13 @@ const workSans = Work_Sans({
 });
 
 export default function LogIn() {
-  const router = useRouter();
   // variables
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [email, setEmail] = useState("");
+  const [validateForm, setValidateForm] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState("false");
   const [isCreateAcc, setIsCreateAcc] = useState(false);
 
   // are conditions true?
@@ -35,7 +36,6 @@ export default function LogIn() {
   const authUrl = "http://localhost:5000/api/auth/login";
   const [dataBaseUsers, setDataBaseUsers] = useState(null);
   const [dataBaseAuth, setDataBaseAuth] = useState(null);
-  const [formDataToShow, setFormDataToShow] = useState(null);
 
   // condition check
   const conditions = [
@@ -118,6 +118,7 @@ export default function LogIn() {
     }
   }
 
+  const [formDataToShow, setFormDataToShow] = useState(null);
   async function handleSignIn() {
     try {
       const res = await fetch(authUrl, {
@@ -134,55 +135,24 @@ export default function LogIn() {
       const data = await res.json();
 
       console.log(`data :`, data);
-      console.log(`data token :`, data.token);
-      console.log(`data msg? :`, data.message);
-      setFormDataToShow(data.message);
+      Cookies.set("userToken", data.token);
+      localStorage.setItem("isLoggedIn", true);
 
-      // condition to add to browser storage
-      if (data.token) {
-        Cookies.set("userToken: ", data.token, { expires: 7 });
-        localStorage.setItem("isLoggedIn", true);
-        router.push("/dashboard");
-      } else {
-        localStorage.setItem("isLoggedIn", false);
-      }
+      setFormDataToShow(data.message);
     } catch (error) {
       console.log(`error fetching data.`, error);
     }
   }
 
-  async function handleAccCreate() {
-    try {
-      const res = await fetch(url, {
-        method: "POST",
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      console.log(`response :`, res);
-      const data = await res.json();
-
-      console.log(`data :`, data);
-      console.log(`data token :`, data.token);
-      console.log(`data msg? :`, data.message);
-      setFormDataToShow(data.message);
-
-      // condition to add to browser storage
-      if (data) {
-        Cookies.set("user Token: ", data.token, { expires: 7 });
-        localStorage.setItem("isLoggedIn", true);
-      } else {
-        localStorage.setItem("isLoggedIn", false);
-      }
-    } catch (error) {
-      console.log(`error fetching data.`, error);
-    }
-  }
-
+  // async function fetchUserNameData() {
+  //   try {
+  //     const res = await fetch(url);
+  //     const users = await res.json();
+  //     setDataBaseUsers(users);
+  //   } catch (error) {
+  //     console.log(`error fetching data.`, error);
+  //   }
+  // }
   async function fetchSignIn() {
     try {
       const res = await fetch(authUrl);
@@ -196,35 +166,37 @@ export default function LogIn() {
     fetchSignIn();
   }, []);
 
+  async function gatherAndPushData() {
+    fetchUserNameData();
+  }
+
   return (
     <form className={` max-w-fit p-4`}>
       {/* {console.log(dataBaseUsers, dataBaseAuth)} */}
       <div className="flex flex-wrap -mx-3 mb-6">
-        {isCreateAcc && (
-          <div className="w-full px-3 mb-6 md:mb-0">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              htmlFor="grid-first-name"
-            >
-              User Name
-            </label>
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              id="grid-first-name"
-              type="text"
-              placeholder="Jane"
-              onChange={(e) => {
-                const value = e.target.value;
-                setUserName(value);
-                usernameCondition(value);
-              }}
-            />
-            <p className="text-red-500 text-xs italic">
-              {usernameErr && usernameErr}
-            </p>
-          </div>
-        )}
-        <div className="w-full px-3">
+        {/* <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          <label
+            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            htmlFor="grid-first-name"
+          >
+            User Name
+          </label>
+          <input
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+            id="grid-first-name"
+            type="text"
+            placeholder="Jane"
+            onChange={(e) => {
+              const value = e.target.value;
+              setUserName(value);
+              usernameCondition(value);
+            }}
+          />
+          <p className="text-red-500 text-xs italic">
+            {usernameErr && usernameErr}
+          </p>
+        </div> */}
+        <div className="w-full md:w-1/2 px-3">
           <label
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             htmlFor="grid-last-name"
@@ -333,7 +305,6 @@ export default function LogIn() {
           <button className="text-blue-800 text-lg"> Click Here!</button>
         </p>
       )}
-      <p className="text-blue-800 text-center">{formDataToShow}</p>
     </form>
   );
 }
