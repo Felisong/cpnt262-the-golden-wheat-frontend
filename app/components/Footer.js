@@ -10,7 +10,7 @@ const lexend = Lexend_Exa({
   subsets: ["latin"],
 });
 
-export default function Navigation() {
+export default function Footer() {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [isAccTrue, setIsAccTrue] = useState(false);
 
@@ -26,7 +26,7 @@ export default function Navigation() {
   }
 
   const navigation = [
-    { name: "Home", href: "/", current: false, id: 1 },
+    { name: "Home", href: "/", current: true, id: 1 },
     { name: "About", href: "/about", current: false, id: 2 },
     { name: "Menu", href: "/products", current: false, id: 3 },
   ];
@@ -51,7 +51,7 @@ export default function Navigation() {
           <Hamburger />
         </li>
         <li>
-          <div className=" space-x-4 w-fit  hidden md:flex px-2">
+          <div className=" space-x-4 w-fit  hidden md:flex">
             {/* GET NAVIGATION WORKING PRIO */}
             {navigation.map((item) => (
               <Link

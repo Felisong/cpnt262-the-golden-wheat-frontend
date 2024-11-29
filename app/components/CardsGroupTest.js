@@ -5,9 +5,10 @@ import { v4 as uuidv4 } from "uuid";
 
 export default function CardsGroupTest() {
   const [products, setProducts] = useState(null);
-  const [buns, setBuns] = useState(null);
-  const [breads, setBreads] = useState(null);
-  const [pastries, setPastries] = useState(null);
+  const [buns, setBuns] = useState([]);
+  const [breads, setBreads] = useState([]);
+  const [pastries, setPastries] = useState([]);
+
   // function
   async function fetchProducts() {
     try {
@@ -25,13 +26,13 @@ export default function CardsGroupTest() {
       for (const item of data) {
         // for buns
         if (item.category === "Buns") {
-          setBuns(item);
+          setBuns(buns.push(item));
         }
         if (item.category === "Bread") {
-          setBreads(item);
+          setBreads(breads.push(item));
         }
         if (item.category === "Pastries") {
-          setPastries(item);
+          setPastries(pastries.push(item));
         } else console.log("unable to push into a category");
       }
     } catch (error) {
