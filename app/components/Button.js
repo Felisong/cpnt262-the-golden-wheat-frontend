@@ -14,7 +14,7 @@ export default function Button({
     <button
       className={`text bg-${backgroundColor}  text-${textColor} py-2 px-4 rounded-3xl mx-2 border-${borderColor} border-4 text-lg ${isHidden}`}
       onClick={(e) => {
-        router.push({ url });
+        router.push(url);
       }}
     >
       {text || "Click Here"}
