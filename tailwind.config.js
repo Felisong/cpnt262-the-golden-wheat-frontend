@@ -13,6 +13,7 @@ module.exports = {
         brownBg: "#4A2D0F",
         darkBlue: "#0F1223",
         yellowBright: "#FFD754",
+        softYellow: "#FFF6DB",
       },
     },
   },
