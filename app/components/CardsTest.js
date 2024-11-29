@@ -12,7 +12,11 @@ export default function CardsTest({ cardProps }) {
       className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
       id={cardProps.id}
     >
-      <img className="rounded-t-lg" src={cardProps.image} alt="" />
+      <img
+        className="rounded-t-lg w-full h-40 object-cover"
+        src={cardProps.image}
+        alt=""
+      />
 
       <div className="p-5">
         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
