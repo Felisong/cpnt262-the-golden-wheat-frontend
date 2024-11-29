@@ -144,6 +144,29 @@ export default function LogIn() {
     }
   }
 
+  async function handleCreateAcc() {
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify({
+          username: username,
+          email: email,
+          password: password,
+          name: username,
+          createdAt: Date.UTC,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(`response :`, res);
+      const data = await res.json();
+      console.log(`data :`, data);
+    } catch (error) {
+      console.log(`error fetching data.`, error);
+    }
+  }
+
   // async function fetchUserNameData() {
   //   try {
   //     const res = await fetch(url);
@@ -165,10 +188,6 @@ export default function LogIn() {
   useEffect(() => {
     fetchSignIn();
   }, []);
-
-  async function gatherAndPushData() {
-    fetchUserNameData();
-  }
 
   return (
     <form className={` w-full p-4`}>
@@ -279,7 +298,7 @@ export default function LogIn() {
         disabled={false}
         onClick={(e) => {
           e.preventDefault();
-          handleSignIn();
+          isCreateAcc ? handleCreateAcc() : handleSignIn();
         }}
       >
         Submit
