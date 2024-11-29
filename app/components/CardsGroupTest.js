@@ -45,6 +45,7 @@ export default function CardsGroupTest() {
   console.log(`buns: `, buns);
   console.log(`breads: `, breads);
   console.log(`pastries: `, pastries);
+  console.log(typeof breads);
 
   return (
     <>

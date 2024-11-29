@@ -287,8 +287,9 @@ export default function LogIn() {
           </div>
         </div>
       )}
+
       <button
-        className="px-4 py-2 m-2 bg-transparent border-yellow-400 bg-gray-100 rounded-3xl hover:grow hover:bg-white disabled:bg-slate-600 disabled:text-white"
+        className="px-4 py-2 m-2 bg-transparent border-yellow-400 rounded-3xl hover:grow hover:bg-white disabled:bg-slate-600 disabled:text-white bg-yellow-50"
         id="SubmitBtn"
         disabled={!isFormValid}
         onClick={(e) => {
