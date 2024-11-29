@@ -171,9 +171,8 @@ export default function LogIn() {
   }
 
   return (
-    <form className={` max-w-fit p-4`}>
-      {/* {console.log(dataBaseUsers, dataBaseAuth)} */}
-      <div className="flex flex-wrap -mx-3 mb-6">
+    <form className={` w-full p-4`}>
+      <div className="flex flex-wrap mb-6">
         {isCreateAcc && (
           <div className="w-full px-3 mb-6 md:mb-0">
             <label
@@ -193,7 +192,7 @@ export default function LogIn() {
                 usernameCondition(value);
               }}
             />
-            <p className="text-red-500 text-xs italic">
+            <p className="text-red-500 text-xs italic min-h-[20px]">
               {usernameErr && usernameErr}
             </p>
           </div>
@@ -218,11 +217,11 @@ export default function LogIn() {
           />
         </div>
         <br></br>
-        <p className="text-red-600 text-xs italic w-full">
+        <p className="text-red-600 text-xs italic aria-[]:">
           {emailErr && emailErr}
         </p>
       </div>
-      <div className="flex flex-wrap -mx-3 mb-6">
+      <div className="flex flex-wrap  mb-6">
         <div className="w-full px-3">
           <label
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -247,7 +246,7 @@ export default function LogIn() {
         </div>
       </div>
       {isCreateAcc && (
-        <div className={`flex flex-wrap -mx-3 mb-6`}>
+        <div className={`flex flex-wrap mb-6`}>
           <div className="w-full px-3">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
