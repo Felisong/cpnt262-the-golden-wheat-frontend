@@ -5,7 +5,9 @@ import { v4 as uuidv4 } from "uuid";
 
 export default function CardsGroupTest() {
   const [products, setProducts] = useState(null);
-
+  const [buns, setBuns] = useState(null);
+  const [breads, setBreads] = useState(null);
+  const [pastries, setPastries] = useState(null);
   // function
   async function fetchProducts() {
     try {
@@ -16,9 +18,21 @@ export default function CardsGroupTest() {
       }
 
       const data = await response.json();
-
-      console.log(`data: `, data);
       setProducts(data);
+
+      // categories
+      for (const item of data) {
+        // for buns
+        if (item.category === "Buns") {
+          setBuns(item);
+        }
+        if (item.category === "Bread") {
+          setBreads(item);
+        }
+        if (item.category === "Pastries") {
+          setPastries(item);
+        } else console.log("unable to push into a category");
+      }
     } catch (error) {
       console.log("unable to fetch data", error);
     }
@@ -27,6 +41,10 @@ export default function CardsGroupTest() {
   useEffect(() => {
     fetchProducts();
   }, []);
+
+  console.log(`buns: `, buns);
+  console.log(`breads: `, breads);
+  console.log(`pastries: `, pastries);
 
   return (
     <>

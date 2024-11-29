@@ -3,9 +3,9 @@ import { useState } from "react";
 export default function CardsTest({ cardProps }) {
   const [isLiked, setIsLiked] = useState(false);
 
-  if (isLiked) {
-    // stringify local storage
-  }
+  // if (isLiked) {
+  // stringify local storage
+  // }
 
   return (
     <div
@@ -23,7 +23,7 @@ export default function CardsTest({ cardProps }) {
           {cardProps.name}
         </h5>
 
-        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 h-44">
           {cardProps.description}
         </p>
         <a

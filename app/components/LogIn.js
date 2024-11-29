@@ -56,7 +56,11 @@ export default function LogIn() {
     }
   }
   function emailConditions(currentEmail) {
-    if (currentEmail.match(/@/g) && currentEmail.length !== 0) {
+    if (
+      currentEmail.match(/@/g) &&
+      currentEmail.length !== 0 &&
+      currentEmail.match()
+    ) {
       setEmail(currentEmail);
       setIsEmailValid(true);
       setEmailErr("");
@@ -284,7 +288,7 @@ export default function LogIn() {
         </div>
       )}
       <button
-        className="px-4 py-2 m-2 bg-transparent border-yellow-400 bg-slate-300 rounded-3xl hover:grow hover:bg-white disabled:bg-slate-600 disabled:text-white"
+        className="px-4 py-2 m-2 bg-transparent border-yellow-400 bg-gray-100 rounded-3xl hover:grow hover:bg-white disabled:bg-slate-600 disabled:text-white"
         id="SubmitBtn"
         disabled={!isFormValid}
         onClick={(e) => {
