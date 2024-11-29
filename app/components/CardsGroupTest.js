@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 export default function CardsGroupTest() {
   const [products, setProducts] = useState(null);
 
-  // functions
+  // function
   async function fetchProducts() {
     try {
       const url = "http://localhost:5000/api/products";
@@ -16,8 +16,7 @@ export default function CardsGroupTest() {
 
       const data = await response.json();
 
-      console.log(`data: `, data.category);
-
+      console.log(`data: `, data);
       setProducts(data);
     } catch (error) {
       console.log("unable to fetch data", error);
@@ -30,7 +29,23 @@ export default function CardsGroupTest() {
 
   return (
     <>
-      <CardsTest />
+      <div id="buns" className="w-fit h-fit flex">
+        {products ? (
+          products.map((product) => (
+            <CardsTest
+              key={product.id}
+              cardProps={{
+                title: product.name,
+                description: product.description,
+                price: product.price,
+                image: product.image,
+              }}
+            />
+          ))
+        ) : (
+          <p> Loading Cards...</p>
+        )}
+      </div>
     </>
   );
 }
