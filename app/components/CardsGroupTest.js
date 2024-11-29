@@ -1,6 +1,7 @@
 "use client";
 import CardsTest from "../components/CardsTest";
 import { useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 export default function CardsGroupTest() {
   const [products, setProducts] = useState(null);
@@ -33,7 +34,7 @@ export default function CardsGroupTest() {
         {products ? (
           products.map((product) => (
             <CardsTest
-              key={product.id}
+              key={product.id || uuidv4()}
               cardProps={{
                 title: product.name,
                 description: product.description,
