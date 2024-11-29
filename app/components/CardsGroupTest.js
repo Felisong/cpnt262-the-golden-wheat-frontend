@@ -11,7 +11,8 @@ export default function CardsGroupTest() {
   // function
   async function fetchProducts() {
     try {
-      const url = "http://localhost:4000/api/products";
+      // change url to 4000 if mac
+      const url = "http://localhost:5000/api/products";
       const response = await fetch(url);
       if (!response.ok) {
         throw new Error(`response status: ${response.status}`);
