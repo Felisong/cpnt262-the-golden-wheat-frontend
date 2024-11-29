@@ -284,7 +284,7 @@ export default function LogIn() {
         </div>
       )}
       <button
-        className="px-4 py-2 m-2 bg-transparent border-yellow-400 bg-white rounded-3xl"
+        className="px-4 py-2 m-2 bg-transparent border-yellow-400 bg-slate-300 rounded-3xl hover:grow hover:bg-white disabled:bg-slate-600 disabled:text-white"
         id="SubmitBtn"
         disabled={!isFormValid}
         onClick={(e) => {
@@ -296,11 +296,10 @@ export default function LogIn() {
       </button>
 
       {!isCreateAcc ? (
-        <p className="text-center">
-          If you do not have an account,
-          <br></br>
+        <>
+          <p className="text-center">If you do not have an account,</p>
           <button
-            className="text-blue-800 text-lg"
+            className="text-blue-800 text-lg text-center w-full"
             onClick={(e) => {
               e.preventDefault();
               userHasNoAcc();
@@ -308,12 +307,13 @@ export default function LogIn() {
           >
             Create Here!
           </button>
+
           {formDataToShow && (
             <p>
               username or password does not match our records, please try again.
             </p>
           )}
-        </p>
+        </>
       ) : (
         <p
           className="text-center"
