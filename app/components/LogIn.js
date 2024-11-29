@@ -294,6 +294,7 @@ export default function LogIn() {
       >
         Submit
       </button>
+
       {!isCreateAcc ? (
         <p className="text-center">
           If you don't have an account,
@@ -306,6 +307,7 @@ export default function LogIn() {
           >
             Create Here!
           </button>
+          {formDataToShow && <p> formDataToShow </p>}
         </p>
       ) : (
         <p
