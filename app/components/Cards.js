@@ -1,21 +1,22 @@
 "use client";
 
-export default function Cards() {
+export default function Cards(product) {
   return (
-    <div className="w-11/12 md:w-10/12 p-1 m-4 md:m-2 rounded-t-3xl overflow-hidden shadow-lg bg-brownBg">
+    <div
+      className="w-11/12 md:w-10/12 p-1 m-4 md:m-2 rounded-t-3xl overflow-hidden shadow-lg bg-brownBg"
+      id={product.id}
+    >
       <img
         className="w-full rounded-t-3xl"
-        src="/bread1.png"
-        alt="Sunset in the mountains"
+        src={product.image}
+        alt={producs.name}
       />
-      <div className="px-6 py-4">
+      <div classNames="px-6 py-4">
         <div className="text-yellowBright font-bold text-xl mb-2">
-          The Coldest Sunset
+          {product.name}
         </div>
         <p className="text-yellowBright text-base flex justify-center">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
-          quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
-          nihil.
+          {product.description}
         </p>
       </div>
       <div className="px-6 pt-4 pb-2">

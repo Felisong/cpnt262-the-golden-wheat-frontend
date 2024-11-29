@@ -3,6 +3,8 @@ import Cards from "./Cards";
 import { useEffect, useState } from "react";
 
 export default function GroupCards() {
+  const [products, setProducts] = useState(null);
+
   async function fetchProducts() {
     try {
       const url = "http://localhost:5000/api/products";
@@ -26,21 +28,32 @@ export default function GroupCards() {
 
   return (
     <div className="w-fit h-fit flex">
-      <Cards
+      {products ? (
+        products.map((product) => (
+          <Cards
+            key={product.id}
+            cardProps={{
+              title: product.name,
+              description: product.description,
+              price: product.price,
+              image: product.image,
+            }}
+          />
+        ))
+      ) : (
+        <p> Loading Cards...</p>
+      )}
+
+      {/* <Cards
         imgSrc={"/bread1.png"}
         Title={"The Coldest Sunset"}
-        bosyText={"Hello"}
+        bodyText={"Hello"}
       />
       <Cards
         imgSrc={"/bread1.png"}
         Title={"The Coldest Sunset"}
-        bosyText={"Hello"}
-      />
-      <Cards
-        imgSrc={"/bread1.png"}
-        Title={"The Coldest Sunset"}
-        bosyText={"Hello"}
-      />
+        bodyText={"Hello"}
+      /> */}
     </div>
   );
 }

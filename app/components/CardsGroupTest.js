@@ -8,7 +8,7 @@ export default function CardsGroupTest() {
   // function
   async function fetchProducts() {
     try {
-      const url = "http://localhost:5000/api/products";
+      const url = "http://localhost:4000/api/products";
       const response = await fetch(url);
       if (!response.ok) {
         throw new Error(`response status: ${response.status}`);
@@ -28,8 +28,8 @@ export default function CardsGroupTest() {
   }, []);
 
   return (
-    <>
-      <div className="w-fit h-fit flex">
+    <div className="container mx-auto flex">
+      <div className="grid  md:grid-cols-2 lg:grid-cols-4 gap-4">
         {products ? (
           products.map((product) => (
             <CardsTest
@@ -46,6 +46,6 @@ export default function CardsGroupTest() {
           <p> Loading Cards...</p>
         )}
       </div>
-    </>
+    </div>
   );
 }
