@@ -5,6 +5,7 @@ import Hamburger from "./Hamburger";
 import Logo from "./Logo";
 import { Lexend_Exa } from "next/font/google";
 import Link from "next/link";
+import Button from "./Button";
 const lexend = Lexend_Exa({
   subsets: ["latin"],
 });
@@ -69,7 +70,16 @@ export default function Navigation() {
             ))}
           </div>
         </li>
-        <li className="text-white">sign in Temp</li>
+        <li>
+          <Button
+            backgroundColor="transparent"
+            borderColor="yellowBright"
+            text="Sign In"
+            textColor="yellowBright"
+            url="/sign-in"
+            isHidden="hidden md:block"
+          />
+        </li>
       </ul>
     </nav>
   );
