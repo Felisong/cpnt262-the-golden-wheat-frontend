@@ -29,7 +29,7 @@ export default function CardsGroupTest() {
 
   return (
     <>
-      <div id="buns" className="w-fit h-fit flex">
+      <div className="w-fit h-fit flex">
         {products ? (
           products.map((product) => (
             <CardsTest
