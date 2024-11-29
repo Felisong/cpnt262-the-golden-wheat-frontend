@@ -47,8 +47,8 @@ export default function Hamburger() {
                 className={classNames(
                   item.current
                     ? "bg-darkBlue text-white px-2 text-2xl"
-                    : "text-darkBlue hover:bg-gray-700 hover:text-white",
-                  "rounded-md py-2 text-sm font-medium text-2xl"
+                    : "text-darkBlue hover:bg-gray-700 hover:text-white px-4 m-0",
+                  "rounded-md py-2 text-sm font-medium"
                 )}
               >
                 {item.text}

@@ -15,7 +15,7 @@ export default function Navigation() {
 
   function SetIsUserLoggedIn() {
     if (!isAccTrue) {
-      setIsAccTrue(localStorage.getItem("IsLoggedIn"));
+      setIsAccTrue(localStorage.getItem("isLoggedIn"));
       if (typeof isAccTrue !== "String") {
         setIsAccTrue(false);
       } else {

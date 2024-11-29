@@ -1,11 +1,16 @@
 import { Work_Sans } from "next/font/google";
 import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 const workSans = Work_Sans({
   subsets: ["latin"],
 });
 
 export default function LogIn() {
+  // for routing
+  const router = useRouter();
+
   // variables
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -86,7 +91,7 @@ export default function LogIn() {
   function isFormValidCheck() {
     if (isCreateAcc) {
       if (
-        // isNameValid &&
+        isNameValid &&
         isEmailValid &&
         isPasswordValid &&
         isPassConfirmValid
@@ -133,65 +138,77 @@ export default function LogIn() {
       const data = await res.json();
 
       console.log(`data :`, data);
-      setFormDataToShow(data.message);
+      if (data) {
+        Cookies.set("userToken", data.token);
+        localStorage.setItem("isLoggedIn", true);
+        setFormDataToShow(data.message);
+        router.push("/dashboard");
+      } else {
+        setFormDataToShow(data.message);
+      }
     } catch (error) {
       console.log(`error fetching data.`, error);
     }
   }
 
-  // async function fetchUserNameData() {
-  //   try {
-  //     const res = await fetch(url);
-  //     const users = await res.json();
-  //     setDataBaseUsers(users);
-  //   } catch (error) {
-  //     console.log(`error fetching data.`, error);
-  //   }
-  // }
-  async function fetchSignIn() {
+  async function handleCreateAcc() {
     try {
-      const res = await fetch(authUrl);
+      const res = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify({
+          username: username,
+          email: email,
+          password: password,
+          name: username,
+          createdAt: Date.UTC,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       const data = await res.json();
-      setDataBaseAuth(data);
+
+      if (data) {
+        Cookies.set("userToken", username);
+        localStorage.setItem("isLoggedIn", true);
+        setFormDataToShow(data.message);
+        router.push("/dashboard");
+      } else {
+        setFormDataToShow(data.message);
+      }
     } catch (error) {
       console.log(`error fetching data.`, error);
     }
-  }
-  useEffect(() => {
-    fetchSignIn();
-  }, []);
-
-  async function gatherAndPushData() {
-    fetchUserNameData();
   }
 
   return (
-    <form className={` max-w-fit p-4`}>
-      {/* {console.log(dataBaseUsers, dataBaseAuth)} */}
-      <div className="flex flex-wrap -mx-3 mb-6">
-        {/* <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-          <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            htmlFor="grid-first-name"
-          >
-            User Name
-          </label>
-          <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-            id="grid-first-name"
-            type="text"
-            placeholder="Jane"
-            onChange={(e) => {
-              const value = e.target.value;
-              setUserName(value);
-              usernameCondition(value);
-            }}
-          />
-          <p className="text-red-500 text-xs italic">
-            {usernameErr && usernameErr}
-          </p>
-        </div> */}
-        <div className="w-full md:w-1/2 px-3">
+    <form className={` w-full p-4`}>
+      <div className="flex flex-wrap mb-6">
+        {isCreateAcc && (
+          <div className="w-full px-3">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              htmlFor="grid-first-name"
+            >
+              User Name
+            </label>
+            <input
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              id="grid-first-name"
+              type="text"
+              placeholder="Jane"
+              onChange={(e) => {
+                const value = e.target.value;
+                setUserName(value);
+                usernameCondition(value);
+              }}
+            />
+            <p className="text-red-500 text-xs italic min-h-[20px]">
+              {usernameErr && usernameErr}
+            </p>
+          </div>
+        )}
+        <div className="w-full px-3">
           <label
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             htmlFor="grid-last-name"
@@ -210,9 +227,12 @@ export default function LogIn() {
             }}
           />
         </div>
-        <p className="text-red-500 text-xs italic">{emailErr && emailErr}</p>
+        <br></br>
+        <p className="text-red-600 text-xs italic aria-[]:">
+          {emailErr && emailErr}
+        </p>
       </div>
-      <div className="flex flex-wrap -mx-3 mb-6">
+      <div className="flex flex-wrap  mb-6">
         <div className="w-full px-3">
           <label
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -237,7 +257,7 @@ export default function LogIn() {
         </div>
       </div>
       {isCreateAcc && (
-        <div className={`flex flex-wrap -mx-3 mb-6`}>
+        <div className={`flex flex-wrap mb-6`}>
           <div className="w-full px-3">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -266,11 +286,10 @@ export default function LogIn() {
       <button
         className="p-4 rounded bg-transparent border-yellow-400"
         id="SubmitBtn"
-        // disabled={!isFormValid}
-        disabled={false}
+        disabled={!isFormValid}
         onClick={(e) => {
           e.preventDefault();
-          handleSignIn();
+          isCreateAcc ? handleCreateAcc() : handleSignIn();
         }}
       >
         Submit

@@ -37,3 +37,5 @@ git clone https://github.com/Felisong/cpnt262-the-golden-wheat-frontend
   tba
 
 - [code for hamburger](https://flowbite.com/docs/components/navbar/)
+
+- [npm js-cookie](https://www.npmjs.com/package/js-cookie)

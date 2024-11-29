@@ -3,29 +3,11 @@ import { useState } from "react";
 import LogIn from "../components/LogIn";
 
 export default function SignIn() {
-  // const [isLoggingIn, setIsLoggingIn] = useState(false);
-
-  // function SetIsUserLoggedIn() {
-  //   if (!isLoggingIn) {
-  //     try {
-  //       setIsAccTrue(localStorage.getItem("IsLoggedIn"));
-  //     } catch (error) {
-  //       console.error("No item in localstorage");
-  //     } finally {
-  //       if (typeof isLoggingIn !== "String") {
-  //         setIsAccTrue(false);
-  //       } else {
-  //         setIsAccTrue(true);
-  //       }
-  //     }
-  //   }
-  // }
-
   return (
     <>
-      <div className="flex m-auto">
+      <div className="flex justify-center">
         <div
-          className={` bg-yellowBright bg-no-repeat bg-contain bg-center rounded-lg flex-col m-4`}
+          className={` bg-yellowBright bg-no-repeat bg-contain bg-center rounded-lg flex-col m-4 w-10/12 md:w-1/2 lg:w-1/3`}
         >
           <LogIn />
         </div>
