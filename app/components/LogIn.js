@@ -16,8 +16,6 @@ export default function LogIn() {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [email, setEmail] = useState("");
-  const [validateForm, setValidateForm] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState("false");
   const [isCreateAcc, setIsCreateAcc] = useState(false);
 
   // are conditions true?
@@ -27,6 +25,7 @@ export default function LogIn() {
   const [isEmailValid, setIsEmailValid] = useState(false);
 
   const [isFormValid, setIsFormValid] = useState(false);
+  const [formDataToShow, setFormDataToShow] = useState(null);
 
   // errors
   const [usernameErr, setUsernameErr] = useState("");
@@ -37,8 +36,6 @@ export default function LogIn() {
   // data from database
   const url = "http://localhost:5000/api/user";
   const authUrl = "http://localhost:5000/api/auth/login";
-  const [dataBaseUsers, setDataBaseUsers] = useState(null);
-  const [dataBaseAuth, setDataBaseAuth] = useState(null);
 
   // condition check
   const conditions = [
@@ -88,6 +85,7 @@ export default function LogIn() {
     }
   }
 
+  // validate form
   function isFormValidCheck() {
     if (isCreateAcc) {
       if (
@@ -113,6 +111,7 @@ export default function LogIn() {
     isFormValidCheck();
   }, conditions);
 
+  // If user has account, triggers different fields
   function userHasNoAcc() {
     if (!isCreateAcc) {
       setIsCreateAcc(true);
@@ -121,7 +120,7 @@ export default function LogIn() {
     }
   }
 
-  const [formDataToShow, setFormDataToShow] = useState(null);
+  // ONCLICK HANDLE SIGN IN OR ACC CREATE BELOW
   async function handleSignIn() {
     try {
       const res = await fetch(authUrl, {
@@ -138,7 +137,7 @@ export default function LogIn() {
       const data = await res.json();
 
       console.log(`data :`, data);
-      if (data) {
+      if (data.message === "Login successful") {
         Cookies.set("userToken", data.token);
         localStorage.setItem("isLoggedIn", true);
         setFormDataToShow(data.message);
@@ -167,6 +166,7 @@ export default function LogIn() {
         },
       });
       const data = await res.json();
+      console.log(data.message);
 
       if (data) {
         Cookies.set("userToken", username);
@@ -284,7 +284,7 @@ export default function LogIn() {
         </div>
       )}
       <button
-        className="p-4 rounded bg-transparent border-yellow-400"
+        className="px-4 py-2 m-2 bg-transparent border-yellow-400 bg-white rounded-3xl"
         id="SubmitBtn"
         disabled={!isFormValid}
         onClick={(e) => {
@@ -308,7 +308,11 @@ export default function LogIn() {
           >
             Create Here!
           </button>
-          {formDataToShow && <p> formDataToShow </p>}
+          {formDataToShow && (
+            <p>
+              username or password does not match our records, please try again.
+            </p>
+          )}
         </p>
       ) : (
         <p
