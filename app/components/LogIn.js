@@ -174,29 +174,31 @@ export default function LogIn() {
     <form className={` max-w-fit p-4`}>
       {/* {console.log(dataBaseUsers, dataBaseAuth)} */}
       <div className="flex flex-wrap -mx-3 mb-6">
-        {/* <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-          <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            htmlFor="grid-first-name"
-          >
-            User Name
-          </label>
-          <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-            id="grid-first-name"
-            type="text"
-            placeholder="Jane"
-            onChange={(e) => {
-              const value = e.target.value;
-              setUserName(value);
-              usernameCondition(value);
-            }}
-          />
-          <p className="text-red-500 text-xs italic">
-            {usernameErr && usernameErr}
-          </p>
-        </div> */}
-        <div className="w-full md:w-1/2 px-3">
+        {isCreateAcc && (
+          <div className="w-full px-3 mb-6 md:mb-0">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              htmlFor="grid-first-name"
+            >
+              User Name
+            </label>
+            <input
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              id="grid-first-name"
+              type="text"
+              placeholder="Jane"
+              onChange={(e) => {
+                const value = e.target.value;
+                setUserName(value);
+                usernameCondition(value);
+              }}
+            />
+            <p className="text-red-500 text-xs italic">
+              {usernameErr && usernameErr}
+            </p>
+          </div>
+        )}
+        <div className="w-full px-3">
           <label
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             htmlFor="grid-last-name"
@@ -215,7 +217,10 @@ export default function LogIn() {
             }}
           />
         </div>
-        <p className="text-red-500 text-xs italic">{emailErr && emailErr}</p>
+        <br></br>
+        <p className="text-red-600 text-xs italic w-full">
+          {emailErr && emailErr}
+        </p>
       </div>
       <div className="flex flex-wrap -mx-3 mb-6">
         <div className="w-full px-3">
