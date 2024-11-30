@@ -127,7 +127,7 @@ export default function LogIn() {
   }
 
   // ONCLICK HANDLE SIGN IN OR ACC CREATE BELOW
-  async function handleSignIn() {
+  async function handleSignIn(currentName) {
     try {
       const res = await fetch(authUrl, {
         method: "POST",
@@ -145,10 +145,13 @@ export default function LogIn() {
       console.log(`data :`, data);
       if (data.message === "Login successful") {
         Cookies.set("userToken", data.token, { expires: 7 });
-        Cookies.set("name", username, { expires: 7 });
+        Cookies.set("name", currentName, { expires: 7 });
         localStorage.setItem("isLoggedIn", true);
+        cookies;
         setFormDataToShow(data.message);
         router.push("/dashboard");
+
+        console.log(username);
       } else {
         setFormDataToShow(data.message);
       }
@@ -298,7 +301,7 @@ export default function LogIn() {
         disabled={!isFormValid}
         onClick={(e) => {
           e.preventDefault();
-          isCreateAcc ? handleCreateAcc() : handleSignIn();
+          isCreateAcc ? handleCreateAcc() : handleSignIn(username);
         }}
       >
         Submit

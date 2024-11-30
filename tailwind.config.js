@@ -7,6 +7,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        lexendExa: ["var(--font-lexend-exa)", "sans-serif"],
+        workSans: ["var(--font-work-sans)", "sans serif"],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
