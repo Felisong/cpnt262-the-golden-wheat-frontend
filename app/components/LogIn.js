@@ -18,6 +18,8 @@ export default function LogIn() {
   const [email, setEmail] = useState("");
   const [isCreateAcc, setIsCreateAcc] = useState(false);
 
+  //
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   // are conditions true?
   const [isNameValid, setIsNameValid] = useState(false);
   const [isPasswordValid, setIsPasswordValid] = useState(false);
@@ -57,7 +59,7 @@ export default function LogIn() {
   }
   function emailConditions(currentEmail) {
     if (
-      currentEmail.match(/@/g) &&
+      currentEmail.match(emailRegex) &&
       currentEmail.length !== 0 &&
       currentEmail.match()
     ) {
@@ -66,7 +68,7 @@ export default function LogIn() {
       setEmailErr("");
     } else {
       setIsEmailValid(false);
-      setEmailErr("Please input a valid email with @ in it.");
+      setEmailErr("Please input a valid email.");
     }
   }
 
@@ -142,7 +144,8 @@ export default function LogIn() {
 
       console.log(`data :`, data);
       if (data.message === "Login successful") {
-        Cookies.set("userToken", data.token);
+        Cookies.set("userToken", data.token, { expires: 7 });
+        Cookies.set("name", username, { expires: 7 });
         localStorage.setItem("isLoggedIn", true);
         setFormDataToShow(data.message);
         router.push("/dashboard");
@@ -172,8 +175,9 @@ export default function LogIn() {
       const data = await res.json();
       console.log(data.message);
 
-      if (data) {
-        Cookies.set("userToken", username);
+      if (data.message === "User created successfully") {
+        Cookies.set("userToken", data.token, { expires: 7 });
+        Cookies.set("name", username, { expires: 7 });
         localStorage.setItem("isLoggedIn", true);
         setFormDataToShow(data.message);
         router.push("/dashboard");
