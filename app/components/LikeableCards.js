@@ -6,7 +6,7 @@ export default function LikeableCards({ cardProps }) {
 
   function handleClick() {
     // button is clicked
-    isLiked ? setIsLiked(true) : setIsLiked(false);
+    !isLiked ? setIsLiked(true) : setIsLiked(false);
 
     //FUNCTION addLikes
     // add conditional to className of button, if isLiked is true, fill heart
@@ -67,6 +67,7 @@ export default function LikeableCards({ cardProps }) {
             onClick={(e) => {
               e.preventDefault();
               handleClick();
+              console.log(isLiked);
             }}
           >
             <svg

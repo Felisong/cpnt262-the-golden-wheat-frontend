@@ -145,9 +145,8 @@ export default function LogIn() {
       console.log(`data :`, data);
       if (data.message === "Login successful") {
         Cookies.set("userToken", data.token, { expires: 7 });
-        Cookies.set("name", currentName, { expires: 7 });
+        // Cookies.set("name", currentName, { expires: 7 });
         localStorage.setItem("isLoggedIn", true);
-        cookies;
         setFormDataToShow(data.message);
         router.push("/dashboard");
 
