@@ -2,6 +2,7 @@
 import CardsTest from "../components/CardsTest";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import LikeableCards from "./LikeableCards";
 
 export default function CardsGroupTest() {
   const [products, setProducts] = useState(null);
@@ -54,7 +55,7 @@ export default function CardsGroupTest() {
       <div className="grid  md:grid-cols-2 lg:grid-cols-4 gap-4">
         {products ? (
           products.map((product) => (
-            <CardsTest
+            <LikeableCards
               key={product.id || uuidv4()}
               cardProps={{
                 title: product.name,

@@ -1,5 +1,7 @@
 "use client";
 
+import Button from "./Button";
+
 export default function Cards(product) {
   return (
     <div

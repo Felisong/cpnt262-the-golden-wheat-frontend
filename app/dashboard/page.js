@@ -6,6 +6,9 @@ import Cookies from "js-cookie";
 export default function DashBoard() {
   const username = Cookies.get("name");
 
+  // generate cards based off of the array I will recieve from localStorage.
+  // i guess i make the array in menu so go there.
+
   return (
     <>
       <section
