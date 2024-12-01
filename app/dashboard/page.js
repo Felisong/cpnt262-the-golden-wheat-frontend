@@ -19,7 +19,12 @@ export default function DashBoard() {
         <h1 className="absolute text-4xl font-lexendExa top-64 m-4 md:top-48 lg:top-64">
           {`Hello ${username ? username : "user"}`}
         </h1>
-        <div>
+      </section>
+      <section>
+        <h2 className="text-4xl text-center p-8 bg-softYellow border-y-4 border-yellowBright">
+          Liked Products
+        </h2>
+        <div className="p-4">
           <DisplayLikedProducts />
         </div>
       </section>
