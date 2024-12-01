@@ -2,41 +2,28 @@ import { useEffect, useState } from "react";
 
 export default function LikeableCards({ cardProps }) {
   const [isLiked, setIsLiked] = useState(false);
-  // const [productLiked, setProductLiked] = useState(null);
-  // const updateLikesArr = localStorage.getItem("likedProducts") || [];
+  const [productNameLiked, setProductNameLiked] = useState(null);
+  const productsLikedArr =
+    JSON.parse(localStorage.getItem("productsLiked")) || [];
 
+  // console.log(productsLikedArr);
   const product = {
     name: cardProps.name,
     description: cardProps.description,
     price: cardProps.price,
     image: cardProps.image,
   };
-  function handleClick() {
-    // addLikes();
-    // handleLocal();
-    // submitArr();
+  function handleClick(e) {
+    e.preventDefault();
+    !isLiked ? setIsLiked(true) : setIsLiked(false);
   }
 
-  function setLikedState() {}
-  // function addLikes() {
-  // console.log(`product being added: `, product.name);
-  //   // console.log(`is productLiked True?: `, isLiked);
-  //   isLiked ? setProductLiked(product.name) : setProductLiked(null);
-  //   // console.log(productLiked);
-  // }
-  // function handleLocal() {
-  //   // if there is something inside productLiked, push to array
-  //   if (productLiked) updateLikesArr.push(productLiked);
-  //   // if product exists in it, pop it out if
-  //   else if (updateLikesArr.includes(product.name) && !productLiked) {
-  //     updateLikesArr.pop();
-  //   }
-  // }
-  // function submitArr() {
-  //   updateLikesArr === 0
-  //     ? localStorage.setItem("likedProducts", updateLikesArr)
-  //     : updateLikesArr.push(productLiked);
-  // }
+  function handleSubmit() {
+    if (!isLiked) {
+      // if (productsLikedArr.)
+    }
+  }
+
   return (
     <div
       className=" max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
@@ -80,9 +67,7 @@ export default function LikeableCards({ cardProps }) {
           </a>
           <button
             onClick={(e) => {
-              e.preventDefault();
-              setLikedState();
-              handleClick();
+              handleClick(e);
             }}
           >
             <svg
@@ -91,7 +76,8 @@ export default function LikeableCards({ cardProps }) {
               strokeWidth="1.5"
               className={`size-8 stroke-yellowBright hover:stroke-red-300 hover:grow  ${
                 !isLiked ? "fill-none" : "fill-yellowBright"
-              }`}
+              }
+              `}
             >
               <path
                 strokeLinecap="round"
