@@ -1,52 +1,66 @@
 import { useState } from "react";
 
 export default function LikeableCards({ cardProps }) {
-  const likedProducts = [];
   const [isLiked, setIsLiked] = useState(false);
-  // console.log(cardProps);
+  const [productLiked, setProductLiked] = useState(null);
+  const updateLikesArr = localStorage.getItem("likedProducts") || [];
 
-  function handleClick(cardProps) {
-    // button is clicked
-    !isLiked ? setIsLiked(true) : setIsLiked(false);
-    addLikes(cardProps.title);
-
-    //FUNCTION addLikes
+  const product = {
+    name: cardProps.name,
+    description: cardProps.description,
+    price: cardProps.price,
+    image: cardProps.image,
+  };
+  function handleClick() {
+    addLikes();
+    handleLocal();
+    submitArr();
   }
-  function addLikes(cardProps) {
-    const updateLikesArr = localStorage.getItem("likedProducts") || [];
 
-    if (isLiked) {
-      likedProducts.push(cardProps.title);
-    } else if (updateLikesArr.match(cardProps.title)) {
-      likedProducts.pop();
+  function addLikes() {
+    console.log(`product being added: `, product.name);
+    console.log(`is productLiked True?: `, isLiked);
+    isLiked ? setProductLiked(product.name) : setProductLiked(null);
+    // console.log(productLiked);
+  }
+  function handleLocal() {
+    // if there is something inside productLiked, push to array
+    if (productLiked) updateLikesArr.push(productLiked);
+    // if product exists in it, pop it out if
+    else if (updateLikesArr.includes(product.name) && !productLiked) {
+      updateLikesArr.pop();
     }
   }
-
+  function submitArr() {
+    updateLikesArr === 0
+      ? localStorage.setItem("likedProducts", updateLikesArr)
+      : updateLikesArr.push(productLiked);
+  }
   return (
     <div
       className=" max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
-      id={cardProps.id}
+      id={product.id}
     >
       <img
         className="rounded-t-lg w-full h-40 object-cover"
-        src={cardProps.image}
+        src={product.image}
         alt=""
       />
 
       <div className="p-5">
         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-          {cardProps.title}
+          {product.name}
         </h5>
 
         <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 h-44">
-          {cardProps.description}
+          {product.description}
         </p>
         <div className="flex justify-between">
           <a
             href="#"
             className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
-            {cardProps.price}
+            {product.price}
             <svg
               className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
               aria-hidden="true"
@@ -66,6 +80,8 @@ export default function LikeableCards({ cardProps }) {
           <button
             onClick={(e) => {
               e.preventDefault();
+              !isLiked ? setIsLiked(true) : setIsLiked(false);
+
               handleClick();
               console.log(isLiked);
             }}

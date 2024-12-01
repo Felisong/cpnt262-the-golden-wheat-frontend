@@ -34,7 +34,7 @@ export default function GroupCards() {
           <Cards
             key={product.id}
             cardProps={{
-              title: product.name,
+              name: product.name,
               description: product.description,
               price: product.price,
               image: product.image,
@@ -44,6 +44,17 @@ export default function GroupCards() {
       ) : (
         <p> Loading Cards...</p>
       )}
+
+      {/* <Cards
+        imgSrc={"/bread1.png"}
+        Title={"The Coldest Sunset"}
+        bodyText={"Hello"}
+      />
+      <Cards
+        imgSrc={"/bread1.png"}
+        Title={"The Coldest Sunset"}
+        bodyText={"Hello"}
+      /> */}
     </div>
   );
 }

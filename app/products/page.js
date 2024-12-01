@@ -1,8 +1,8 @@
 "use client";
 
-import Cards from "../components/Cards";
+import Cards from "../components/originalCards/Cards";
 import CardsGroupTest from "../components/CardsGroupTest";
-import GroupCards from "../components/GroupCards";
+import GroupCards from "../components/originalCards/GroupCards";
 
 export default function Products() {
   return (

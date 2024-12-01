@@ -1,6 +1,6 @@
 "use client";
 
-import Button from "./Button";
+import Button from "../Button";
 
 export default function Cards(product) {
   return (
@@ -11,7 +11,7 @@ export default function Cards(product) {
       <img
         className="w-full rounded-t-3xl"
         src={product.image}
-        alt={producs.name}
+        alt={product.title}
       />
       <div className="px-6 py-4">
         <div className="text-yellowBright font-bold text-xl mb-2">

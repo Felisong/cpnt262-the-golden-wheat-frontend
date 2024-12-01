@@ -1,5 +1,5 @@
 "use client";
-import CardsTest from "../components/CardsTest";
+import CardsTest from "./CardsTest";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import LikeableCards from "./LikeableCards";
@@ -22,7 +22,7 @@ export default function CardsGroupTest() {
 
       const data = await response.json();
       setProducts(data);
-      console.log(data);
+      console.log(data[0].name);
 
       // categories
       // for (const item of data) {
@@ -59,7 +59,7 @@ export default function CardsGroupTest() {
             <LikeableCards
               key={product.id || uuidv4()}
               cardProps={{
-                title: product.name,
+                name: product.name,
                 description: product.description,
                 price: product.price,
                 image: product.image,
