@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 
 export default function LikeableCards({ cardProps }) {
   const [isLiked, setIsLiked] = useState(false);
-  const [productNameLiked, setProductNameLiked] = useState(null);
+  const [productName, setProductName] = useState(null);
   const productsLikedArr =
     JSON.parse(localStorage.getItem("productsLiked")) || [];
 
-  // console.log(productsLikedArr);
   const product = {
     name: cardProps.name,
     description: cardProps.description,
@@ -16,13 +15,27 @@ export default function LikeableCards({ cardProps }) {
   function handleClick(e) {
     e.preventDefault();
     !isLiked ? setIsLiked(true) : setIsLiked(false);
+    setProductName(product.name);
   }
 
-  function handleSubmit() {
+  function handleLocalStorage() {
     if (!isLiked) {
-      // if (productsLikedArr.)
+      if (productsLikedArr.includes(productName)) {
+        productsLikedArr.pop();
+        localStorage.setItem("productsLiked", JSON.stringify(productsLikedArr));
+        console.log("took product out");
+      } else {
+        console.log("nothing to pull");
+      }
+    } else {
+      productsLikedArr.push(productName);
+      localStorage.setItem("productsLiked", JSON.stringify(productsLikedArr));
+      console.log("successfully added");
     }
   }
+  useEffect(() => {
+    handleLocalStorage();
+  }, [isLiked]);
 
   return (
     <div
