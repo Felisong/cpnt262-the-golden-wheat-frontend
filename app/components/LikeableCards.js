@@ -3,23 +3,23 @@ import { useState } from "react";
 export default function LikeableCards({ cardProps }) {
   const likedProducts = [];
   const [isLiked, setIsLiked] = useState(false);
+  // console.log(cardProps);
 
-  function handleClick() {
+  function handleClick(cardProps) {
     // button is clicked
     !isLiked ? setIsLiked(true) : setIsLiked(false);
+    addLikes(cardProps.title);
 
     //FUNCTION addLikes
-    // add conditional to className of button, if isLiked is true, fill heart
   }
   function addLikes(cardProps) {
-    // const checkLikesArr = // check localstorage for name
-    // if
-    // if isLiked is true
-    // likedProducts.push(cardProps.name)
-    // localStorage.setItem(cardProps.name)
-    //.
-    // if isLiked is false
-    // l
+    const updateLikesArr = localStorage.getItem("likedProducts") || [];
+
+    if (isLiked) {
+      likedProducts.push(cardProps.title);
+    } else if (updateLikesArr.match(cardProps.title)) {
+      likedProducts.pop();
+    }
   }
 
   return (
@@ -35,7 +35,7 @@ export default function LikeableCards({ cardProps }) {
 
       <div className="p-5">
         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-          {cardProps.name}
+          {cardProps.title}
         </h5>
 
         <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 h-44">

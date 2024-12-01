@@ -22,20 +22,21 @@ export default function CardsGroupTest() {
 
       const data = await response.json();
       setProducts(data);
+      console.log(data);
 
       // categories
-      for (const item of data) {
-        // for buns
-        if (item.category === "Buns") {
-          setBuns(buns.push(item));
-        }
-        if (item.category === "Bread") {
-          setBreads(breads.push(item));
-        }
-        if (item.category === "Pastries") {
-          setPastries(pastries.push(item));
-        } else console.log("unable to push into a category");
-      }
+      // for (const item of data) {
+      //   // for buns
+      //   if (item.category === "Buns") {
+      //     setBuns(buns.push(item));
+      //   }
+      //   if (item.category === "Bread") {
+      //     setBreads(breads.push(item));
+      //   }
+      //   if (item.category === "Pastries") {
+      //     setPastries(pastries.push(item));
+      //   } else console.log("unable to push into a category");
+      // }
     } catch (error) {
       console.log("unable to fetch data", error);
     }
@@ -45,10 +46,10 @@ export default function CardsGroupTest() {
     fetchProducts();
   }, []);
 
-  console.log(`buns: `, buns);
-  console.log(`breads: `, breads);
-  console.log(`pastries: `, pastries);
-  console.log(typeof breads);
+  // console.log(`buns: `, buns);
+  // console.log(`breads: `, breads);
+  // console.log(`pastries: `, pastries);
+  // console.log(typeof breads);
 
   return (
     <div className="container mx-auto flex">

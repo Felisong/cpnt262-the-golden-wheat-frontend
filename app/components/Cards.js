@@ -13,7 +13,7 @@ export default function Cards(product) {
         src={product.image}
         alt={producs.name}
       />
-      <div classNames="px-6 py-4">
+      <div className="px-6 py-4">
         <div className="text-yellowBright font-bold text-xl mb-2">
           {product.name}
         </div>

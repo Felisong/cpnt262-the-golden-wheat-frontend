@@ -26,6 +26,7 @@ export default function GroupCards() {
     fetchProducts();
   }, []);
 
+  console.log(products);
   return (
     <div className="w-fit h-fit flex">
       {products ? (
@@ -43,17 +44,6 @@ export default function GroupCards() {
       ) : (
         <p> Loading Cards...</p>
       )}
-
-      {/* <Cards
-        imgSrc={"/bread1.png"}
-        Title={"The Coldest Sunset"}
-        bodyText={"Hello"}
-      />
-      <Cards
-        imgSrc={"/bread1.png"}
-        Title={"The Coldest Sunset"}
-        bodyText={"Hello"}
-      /> */}
     </div>
   );
 }
