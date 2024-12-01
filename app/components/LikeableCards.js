@@ -2,9 +2,17 @@ import { useEffect, useState } from "react";
 
 export default function LikeableCards({ cardProps }) {
   const [isLiked, setIsLiked] = useState(false);
-  const [productName, setProductName] = useState(null);
   const productsLikedArr =
     JSON.parse(localStorage.getItem("productsLiked")) || [];
+
+  const saveLiked = () => {
+    if (productsLikedArr.includes(product.name)) {
+      setIsLiked(true);
+    }
+  };
+  useEffect(() => {
+    saveLiked();
+  }, []);
 
   const product = {
     name: cardProps.name,
@@ -15,22 +23,26 @@ export default function LikeableCards({ cardProps }) {
   function handleClick(e) {
     e.preventDefault();
     !isLiked ? setIsLiked(true) : setIsLiked(false);
-    setProductName(product.name);
   }
 
+  // TODO: ERROR, Will always pop the last one added, instead of the actual value if it is older. Must find out how to specify.. maybe some index nonsense?
+  // TODO: get it to not pop upon page reload.
+  // Look into the hooks in react. I saw one which is called useContext?
   function handleLocalStorage() {
     if (!isLiked) {
-      if (productsLikedArr.includes(productName)) {
+      if (productsLikedArr.includes(product.name)) {
         productsLikedArr.pop();
         localStorage.setItem("productsLiked", JSON.stringify(productsLikedArr));
         console.log("took product out");
       } else {
         console.log("nothing to pull");
       }
-    } else {
-      productsLikedArr.push(productName);
+    } else if (!productsLikedArr.includes(product.name)) {
+      productsLikedArr.push(product.name);
       localStorage.setItem("productsLiked", JSON.stringify(productsLikedArr));
       console.log("successfully added");
+    } else {
+      console.log("already added");
     }
   }
   useEffect(() => {
