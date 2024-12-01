@@ -29,20 +29,23 @@ export default function LikeableCards({ cardProps }) {
   // TODO: get it to not pop upon page reload.
   // Look into the hooks in react. I saw one which is called useContext?
   function handleLocalStorage() {
+    const isInsideArr = (Element) => Element === product.name;
+    const findIndex = productsLikedArr.findIndex(isInsideArr);
+
     if (!isLiked) {
       if (productsLikedArr.includes(product.name)) {
-        productsLikedArr.pop();
+        productsLikedArr.splice(findIndex, 1);
         localStorage.setItem("productsLiked", JSON.stringify(productsLikedArr));
-        console.log("took product out");
+        // console.log("took product out");
       } else {
-        console.log("nothing to pull");
+        // console.log("nothing to pull");
       }
     } else if (!productsLikedArr.includes(product.name)) {
       productsLikedArr.push(product.name);
       localStorage.setItem("productsLiked", JSON.stringify(productsLikedArr));
-      console.log("successfully added");
+      // console.log("successfully added");
     } else {
-      console.log("already added");
+      // console.log("already added");
     }
   }
   useEffect(() => {
