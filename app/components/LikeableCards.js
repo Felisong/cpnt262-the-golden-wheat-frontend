@@ -1,10 +1,20 @@
 import { useEffect, useState } from "react";
 
 export default function LikeableCards({ cardProps }) {
+  // variables
   const [isLiked, setIsLiked] = useState(false);
+  // properties to call on.
+  const product = {
+    name: cardProps.name,
+    description: cardProps.description,
+    price: cardProps.price,
+    image: cardProps.image,
+  };
+
   const productsLikedArr =
     JSON.parse(localStorage.getItem("productsLiked")) || [];
 
+  // save like state upon refresh
   const saveLiked = () => {
     if (productsLikedArr.includes(product.name)) {
       setIsLiked(true);
@@ -14,35 +24,27 @@ export default function LikeableCards({ cardProps }) {
     saveLiked();
   }, []);
 
-  const product = {
-    name: cardProps.name,
-    description: cardProps.description,
-    price: cardProps.price,
-    image: cardProps.image,
-  };
+  // executes after click.
   function handleClick(e) {
     e.preventDefault();
     !isLiked ? setIsLiked(true) : setIsLiked(false);
   }
 
-  // WORKING AS INTENDED, DO NOT TOUCH.
-  // checks if the array already includes item and acts depending on that. Saves to localstorage and keeps save upon refresh.
   function handleLocalStorage() {
     // to find the index number of the element if it is equal to te value I want.
-    const isInsideArr = (Element) => Element === product.name;
+    const isInsideArr = (Element) => Element.name === product.name;
     const findIndex = productsLikedArr.findIndex(isInsideArr);
 
     if (!isLiked) {
-      if (productsLikedArr.includes(product.name)) {
+      // finIndex is -1 if item is not in array.
+      if (findIndex !== -1) {
         productsLikedArr.splice(findIndex, 1);
         // set
         localStorage.setItem("productsLiked", JSON.stringify(productsLikedArr));
         console.log("took product out");
-      } else {
-        console.log("nothing to pull");
       }
-    } else if (!productsLikedArr.includes(product.name)) {
-      productsLikedArr.push(product.name);
+    } else if (findIndex === -1) {
+      productsLikedArr.push(product);
       localStorage.setItem("productsLiked", JSON.stringify(productsLikedArr));
       console.log("successfully added");
     } else {
