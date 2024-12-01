@@ -25,9 +25,8 @@ export default function LikeableCards({ cardProps }) {
     !isLiked ? setIsLiked(true) : setIsLiked(false);
   }
 
-  // TODO: ERROR, Will always pop the last one added, instead of the actual value if it is older. Must find out how to specify.. maybe some index nonsense?
-  // TODO: get it to not pop upon page reload.
-  // Look into the hooks in react. I saw one which is called useContext?
+  // WORKING AS INTENDED, DO NOT TOUCH.
+  // checks if the array already includes item and acts depending on that. Saves to localstorage and keeps save upon refresh.
   function handleLocalStorage() {
     // to find the index number of the element if it is equal to te value I want.
     const isInsideArr = (Element) => Element === product.name;
