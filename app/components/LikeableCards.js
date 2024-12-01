@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 export default function LikeableCards({ cardProps }) {
   // variables
   const [isLiked, setIsLiked] = useState(false);
+  const productsLikedArr =
+    JSON.parse(localStorage.getItem("productsLiked")) || [];
+
   // properties to call on.
   const product = {
     name: cardProps.name,
@@ -11,12 +14,13 @@ export default function LikeableCards({ cardProps }) {
     image: cardProps.image,
   };
 
-  const productsLikedArr =
-    JSON.parse(localStorage.getItem("productsLiked")) || [];
+  // for finding index to take out and add.
+  const isInsideArr = (Element) => Element.name === product.name;
+  const findIndex = productsLikedArr.findIndex(isInsideArr);
 
   // save like state upon refresh
   const saveLiked = () => {
-    if (productsLikedArr.includes(product.name)) {
+    if (findIndex !== -1) {
       setIsLiked(true);
     }
   };
@@ -32,8 +36,6 @@ export default function LikeableCards({ cardProps }) {
 
   function handleLocalStorage() {
     // to find the index number of the element if it is equal to te value I want.
-    const isInsideArr = (Element) => Element.name === product.name;
-    const findIndex = productsLikedArr.findIndex(isInsideArr);
 
     if (!isLiked) {
       // finIndex is -1 if item is not in array.
