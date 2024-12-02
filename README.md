@@ -30,6 +30,14 @@ You will find your own pages inside the app folder. Please feel free to add more
 git clone https://github.com/Felisong/cpnt262-the-golden-wheat-frontend
 ```
 
+Once in, open your terminal and type in:
+
+```
+npm run dev
+```
+
+to start the server.
+
 ## Attributions
 
 - [tailwind docs](https://tailwindcss.com)
