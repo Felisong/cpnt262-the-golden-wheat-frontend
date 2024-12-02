@@ -33,7 +33,10 @@ export default function Navigation() {
     <nav
       className={`${lexend.className} flex w-[100vw] bg-gradient-to-b from-black to-darkBlue border-yellowBright border-b-4 h-fit justify-between`}
     >
-      <Logo />
+      <Logo
+        width="w-12 md:w-24 lg:w-28"
+        size="text-[10px] md:text-xl lg:text-2xl "
+      />
       {console.log(isAccTrue)}
       <ul className="flex items-center w-fit m-4">
         <li>

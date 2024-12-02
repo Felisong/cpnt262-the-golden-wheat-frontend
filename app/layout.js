@@ -3,6 +3,7 @@ import { Lexend_Exa } from "next/font/google";
 import "./globals.css";
 import { Work_Sans } from "next/font/google";
 import Navigation from "./components/Navigation";
+import Footer from "./components/Footer";
 
 const lexendExa = Lexend_Exa({
   subsets: ["latin"],
@@ -33,6 +34,7 @@ export default function RootLayout({ children }) {
       >
         <Navigation />
         {children}
+        <Footer />
       </body>
     </html>
   );
