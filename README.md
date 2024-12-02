@@ -32,11 +32,12 @@ git clone https://github.com/Felisong/cpnt262-the-golden-wheat-frontend
 
 ## Attributions
 
+- [tailwind docs](https://tailwindcss.com)
+- [react docs](https://react.dev)
+
 - [w3schools](https://www.w3schools.com)
 - [mdnMozilla](https://developer.mozilla.org/en-US/)
-  tba
-
 - [code for hamburger](https://flowbite.com/docs/components/navbar/)
-
 - [npm js-cookie](https://www.npmjs.com/package/js-cookie)
 - [heroicons.com](https://heroicons.com)
+- [chatgpt, only for asking questions. No pasting done](https://chatgpt.com/c/674d2279-9f78-800a-a5b6-336ea961a9c4)

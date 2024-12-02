@@ -10,7 +10,7 @@ export default function Home() {
           <Hero title="baked to perfection."></Hero>
         </main>
       </div>
-      <section className="text-xl p-8 text-center md:px-60 font-workSans">
+      <section className="text-xl p-8 text-center md:px-60 font-workSans py-16">
         <p>
           Welcome to Golden Wheat Bakery, your local haven for handcrafted
           artisan bread, delectable pastries, and savory buns.
@@ -22,7 +22,7 @@ export default function Home() {
           baked goodness that has made us a beloved part of the community!
         </p>
       </section>
-      <section className="">
+      <section className="py-20">
         <OurStory />
       </section>
     </>
