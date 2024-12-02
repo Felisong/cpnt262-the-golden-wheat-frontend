@@ -10,8 +10,8 @@ export default function Home() {
           <Hero title="baked to perfection."></Hero>
         </main>
       </div>
-      <section className="text-lg p-8 text-center md:px-60">
-        <p className="">
+      <section className="text-xl p-8 text-center md:px-60 font-workSans">
+        <p>
           Welcome to Golden Wheat Bakery, your local haven for handcrafted
           artisan bread, delectable pastries, and savory buns.
         </p>
