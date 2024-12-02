@@ -2,14 +2,6 @@ import Hero from "../components/Hero/Hero";
 import styles from "./about.module.css";
 
 export default function about() {
-  const [isAccTrue, setIsAccTrue] = useState(false);
-
-  function SetIsUserLoggedIn() {
-    setIsAccTrue(localStorage.getItem("isLoggedIn") || false);
-  }
-  useEffect(() => {
-    SetIsUserLoggedIn();
-  }, []);
   return (
     <>
       <Hero title="about us."></Hero>
