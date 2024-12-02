@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Hamburger from "./Hamburger";
 import Logo from "./Logo";
 import { Lexend_Exa } from "next/font/google";
@@ -11,19 +11,14 @@ const lexend = Lexend_Exa({
 });
 
 export default function Navigation() {
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [isAccTrue, setIsAccTrue] = useState(false);
 
   function SetIsUserLoggedIn() {
-    if (!isAccTrue) {
-      setIsAccTrue(localStorage.getItem("isLoggedIn"));
-      if (typeof isAccTrue !== "String") {
-        setIsAccTrue(false);
-      } else {
-        setIsAccTrue(true);
-      }
-    }
+    setIsAccTrue(localStorage.getItem("isLoggedIn") || false);
   }
+  useEffect(() => {
+    SetIsUserLoggedIn();
+  }, []);
 
   const navigation = [
     { name: "Home", href: "/", current: false, id: 1 },
@@ -39,6 +34,7 @@ export default function Navigation() {
       className={`${lexend.className} flex w-[100vw] bg-gradient-to-b from-black to-darkBlue border-yellowBright border-b-4 h-fit justify-between`}
     >
       <Logo />
+      {console.log(isAccTrue)}
       <ul className="flex items-center w-fit m-4">
         <li>
           <Hamburger />
@@ -64,14 +60,25 @@ export default function Navigation() {
           </div>
         </li>
         <li>
-          <Button
-            backgroundColor="transparent"
-            borderColor="yellowBright"
-            text="Sign In"
-            textColor="yellowBright"
-            url="/sign-in"
-            isHidden="hidden md:block"
-          />
+          {!isAccTrue ? (
+            <Button
+              backgroundColor="transparent"
+              borderColor="yellowBright"
+              text="Sign In"
+              textColor="yellowBright"
+              url="/sign-in"
+              isHidden="hidden md:block"
+            />
+          ) : (
+            <Button
+              backgroundColor="transparent"
+              borderColor="yellowBright"
+              text="Dashboard"
+              textColor="yellowBright"
+              url="/dashboard"
+              isHidden="hidden md:block"
+            />
+          )}
         </li>
         <li>
           <svg

@@ -23,6 +23,8 @@ export const metadata = {
     "Welcome to The Golden Wheat Factory! The best baked goods in Calgary.",
 };
 
+// would use context go here? Will not implement but curious.
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">

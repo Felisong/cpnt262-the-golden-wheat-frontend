@@ -35,22 +35,16 @@ export default function LikeableCards({ cardProps }) {
   }
 
   function handleLocalStorage() {
-    // to find the index number of the element if it is equal to te value I want.
-
     if (!isLiked) {
       // finIndex is -1 if item is not in array.
       if (findIndex !== -1) {
         productsLikedArr.splice(findIndex, 1);
         // set
         localStorage.setItem("productsLiked", JSON.stringify(productsLikedArr));
-        console.log("took product out");
       }
     } else if (findIndex === -1) {
       productsLikedArr.push(product);
       localStorage.setItem("productsLiked", JSON.stringify(productsLikedArr));
-      console.log("successfully added");
-    } else {
-      console.log("already added");
     }
   }
   useEffect(() => {
