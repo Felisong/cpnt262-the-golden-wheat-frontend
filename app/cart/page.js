@@ -6,7 +6,7 @@ import CardsGroupTest from "../components/CardsGroupTest";
 export default function Cart() {
   return (
     <>
-      <CardsGroupTest />
+      <p>to be added in.</p>
     </>
   );
 }

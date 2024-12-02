@@ -22,7 +22,7 @@ export default function Home() {
           baked goodness that has made us a beloved part of the community!
         </p>
       </section>
-      <section>
+      <section className="">
         <OurStory />
       </section>
     </>
